@@ -12,8 +12,11 @@ Open two browser tabs: the console at `http://localhost:5173` and the public ver
 `http://localhost:5173/verify`. Sign in as `r.deshmukh` / `pramana`. Set the **Access purpose**
 selector in the top bar to `INVESTIGATION`.
 
-Have a second browser profile (or a private window) already signed in as `a.pawar` — switching
-accounts live wastes fifteen seconds you do not have.
+SI Deshmukh is the investigating officer on the Women Safety cases and a co-investigator on the general
+Kalmeshwar case, so steps 1 through 4 and step 6 all run from this one account — no switching mid-pitch.
+
+Have two more browser profiles (or private windows) already signed in as `a.pawar` and `m.iyer`. Step 5
+needs both, and switching accounts live wastes fifteen seconds you do not have.
 
 ---
 
@@ -77,13 +80,26 @@ people. Open the PDF.
 
 ## 2:30 — 3:15 · Access control that explains itself
 
-Switch to the tab signed in as **a.pawar**. Open **FIR/2026/0157** (the Women Safety case).
+Two independent barriers, shown back to back. Both denials land in the audit trail with the officer's
+identity, the purpose they selected and the rule that refused them.
 
-Refused — and the screen names the rule: `deny-sensitive-case-without-assignment`.
+Switch to **a.pawar** and open **FIR/2026/0157** (the Women Safety case).
 
-> "He is a sub-inspector in the same police station. Rank grants nothing here; explicit assignment does.
-> A District Superintendent who is not assigned gets the same screen — he gets a request button, not the
-> file. And this denial is now in the audit trail, with his identity and the purpose he selected."
+Refused: `deny-clearance-below-sensitivity`.
+
+> "Same police station, same rank as the investigating officer. His clearance does not reach this
+> classification, so he does not get in — and he is told exactly why."
+
+Now switch to **m.iyer** — a *Deputy Superintendent*, two ranks senior, whose clearance is high enough.
+Open the same case.
+
+Refused again, on a different rule: `deny-sensitive-case-without-assignment`.
+
+> "This is the one that matters. She outranks everyone in that station and she is cleared for this
+> classification — and she still does not get in, because she is not assigned to this case. Rank grants
+> nothing here. She gets a request button, not the file.
+>
+> That is the difference between a system that logs misuse and one that prevents it."
 
 Back as **r.deshmukh**, open the same case:
 

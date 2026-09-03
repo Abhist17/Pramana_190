@@ -83,6 +83,19 @@ for (const seed of CASES) {
     run('INSERT INTO case_assignments (case_id, user_id, role, assigned_by, assigned_at) VALUES (?,?,?,?,?)',
       caseId, userIds.get(sho.username)!, 'supervisor', ioId, registeredAt);
   }
+  // Co-investigators are normal, and the demo needs one account that can walk the
+  // whole flow — capture, tamper, certificate, search — without switching users
+  // mid-pitch. SI Deshmukh assists on the general Kalmeshwar case; the deliberate
+  // denial in the demo is SI Pawar being refused the sensitive cases, which this
+  // does not weaken.
+  for (const co of seed.coInvestigators ?? []) {
+    const coId = userIds.get(co);
+    if (coId && coId !== ioId) {
+      run('INSERT INTO case_assignments (case_id, user_id, role, assigned_by, assigned_at) VALUES (?,?,?,?,?)' +
+          ' ON CONFLICT(case_id, user_id) DO NOTHING',
+        caseId, coId, 'io', ioId, registeredAt);
+    }
+  }
 
   if (assessment.sensitive) enableSensitiveMode(caseId, ioId, `Auto-escalated on registration: ${assessment.matched.join('; ')}`);
   if (seed.victim) sealIdentity(caseId, seed.victim, seed.sections.some((s) => /POCSO/i.test(s)) ? 'victim' : 'victim');

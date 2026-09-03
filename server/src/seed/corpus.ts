@@ -48,6 +48,8 @@ export type SeedDocument = {
 export type SeedCase = {
   caseNumber: string; title: string; sections: string[]; station: string; district: string;
   registeredDaysAgo: number; io: string; status: string;
+  /** additional officers assigned to the case, by username */
+  coInvestigators?: string[];
   victim?: { fullName: string; age?: number; address?: string; phone?: string };
   complainantPhone: string;
   documents: SeedDocument[];
@@ -72,6 +74,7 @@ export const CASES: SeedCase[] = [
     sections: ['BNS 115(2)', 'BNS 351(2)'],
     station: 'Kalmeshwar PS', district: 'Nagpur Rural',
     registeredDaysAgo: 84, io: 'a.pawar', status: 'under_investigation',
+    coInvestigators: ['r.deshmukh'],
     complainantPhone: '9730051182',
     documents: [
       {
