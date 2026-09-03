@@ -1,0 +1,9 @@
+node_modules
+*/node_modules
+contracts/node_modules
+contracts/artifacts
+contracts/cache
+contracts/typechain-types
+server/storage
+web/dist
+.git

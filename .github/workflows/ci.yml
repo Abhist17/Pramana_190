@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  app:
+    name: API and console
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm test
+      - name: Seed the demonstration corpus
+        run: npm run seed
+      - name: Build the console
+        run: npm run build
+      - name: Smoke-test the API
+        run: |
+          npm run start --workspace server &
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:4000/api/health >/dev/null && break
+            sleep 1
+          done
+          curl -sf http://127.0.0.1:4000/api/health | tee /dev/stderr | grep -q '"status":"ok"'
+          # The public verifier must answer without a session.
+          curl -sf http://127.0.0.1:4000/api/public/ledger/summary | grep -q '"height"'
+
+  contracts:
+    name: Solidity contracts
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install
+      - run: npx hardhat compile
+      - run: npx hardhat test

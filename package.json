@@ -1,0 +1,20 @@
+{
+  "name": "pramana",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PRAMANA - Secure, blockchain-anchored document and evidence platform for the criminal justice system (SIH 2026, PS 26190)",
+  "workspaces": ["server", "web"],
+  "engines": { "node": ">=22.5.0" },
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm --workspace server run dev",
+    "dev:web": "npm --workspace web run dev",
+    "seed": "npm --workspace server run seed",
+    "reset": "npm --workspace server run reset",
+    "build": "npm --workspace web run build",
+    "typecheck": "npm --workspace server run typecheck && npm --workspace web run typecheck",
+    "test": "npm --workspace server run test",
+    "start": "npm --workspace server run start"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}

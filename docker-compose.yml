@@ -1,0 +1,41 @@
+# Demo deployment. Production runs on Kubernetes over MeitY-empanelled government
+# cloud (NIC / MeghRaj) with PostgreSQL + pgvector, MinIO with object lock, an HSM
+# for the master key, and one permissioned-chain node per participating institution.
+# See docs/ARCHITECTURE.md, "Demo vs production".
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PRAMANA_LEDGER: ${PRAMANA_LEDGER:-local}
+      PRAMANA_RPC_URL: http://chain:8545
+      HOST: 0.0.0.0
+      PORT: "4000"
+      # Demo secret. Production reads this from the platform secret store.
+      PRAMANA_JWT_SECRET: ${PRAMANA_JWT_SECRET:-pramana-demo-secret-do-not-use-in-production}
+    volumes:
+      - pramana-storage:/app/server/storage
+    ports:
+      - "4000:4000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+
+  # Stands in for the permissioned consortium network. Enable with:
+  #   PRAMANA_LEDGER=evm docker compose --profile chain up
+  chain:
+    image: node:24-alpine
+    profiles: [chain]
+    working_dir: /app
+    volumes:
+      - ./contracts:/app
+    command: sh -c "npm install && npx hardhat node --hostname 0.0.0.0"
+    ports:
+      - "8545:8545"
+
+volumes:
+  pramana-storage:
