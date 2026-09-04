@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Banner, Card, Chip } from '../components/ui.tsx';
 import { when } from '../lib/format.ts';
+import { PublicShell } from '../components/GovChrome.tsx';
+import { useGov } from '../lib/gov.tsx';
 
 type Status = {
   caseNumber: string; status: string; registeredAt: string; station: string;
@@ -17,6 +19,7 @@ type Status = {
  * communications sent - never investigative content.
  */
 export default function CitizenPortal() {
+  const { t } = useGov();
   const [reference, setReference] = useState('FIR-2026-0142');
   const [otp, setOtp] = useState('');
   const [sent, setSent] = useState<{ sentTo: string; demoOtp: string } | null>(null);
@@ -56,11 +59,15 @@ export default function CitizenPortal() {
   };
 
   return (
-    <div className="public">
-      <div className="shell" style={{ maxWidth: 620 }}>
-        <div className="mast">
-          <div className="name">PRAMANA</div>
-          <div className="sub">Case status for complainants · शिकायतकर्ता हेतु स्थिति</div>
+    <PublicShell trail={[{ label: t('navCitizen') }]}>
+      <div className="shell" style={{ maxWidth: 640 }}>
+        <div className="page-head" style={{ marginBottom: 18 }}>
+          <h1>{t('navCitizen')}</h1>
+          <p className="lede">
+            Case status for complainants <span lang="hi">- शिकायतकर्ता हेतु प्रकरण की स्थिति</span>.
+            This portal shows the stage of the investigation and the statutory notices issued to you.
+            It never shows investigative material.
+          </p>
         </div>
 
         <div className="stack">
@@ -136,6 +143,6 @@ export default function CitizenPortal() {
           </div>
         </div>
       </div>
-    </div>
+    </PublicShell>
   );
 }

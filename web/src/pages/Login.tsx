@@ -3,6 +3,8 @@ import { useApp } from '../lib/app.tsx';
 import { api } from '../lib/api.ts';
 import { initials } from '../lib/format.ts';
 import { Banner } from '../components/ui.tsx';
+import { PublicShell } from '../components/GovChrome.tsx';
+import { useGov } from '../lib/gov.tsx';
 
 type Persona = {
   username: string; fullName: string; designation: string; role: string;
@@ -12,6 +14,7 @@ type Persona = {
 
 export default function Login() {
   const { signIn, toast } = useApp();
+  const { t } = useGov();
   const [personas, setPersonas] = useState<Persona[]>([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('pramana');
@@ -38,19 +41,19 @@ export default function Login() {
   };
 
   return (
-    <div className="public">
+    <PublicShell trail={[{ label: t('signIn') }]}>
       <div className="shell" style={{ maxWidth: 920 }}>
-        <div className="mast">
-          <div className="name">PRAMANA</div>
-          <div className="sub">
-            प्रमाण - <em>proof, the valid means of knowledge</em><br />
-            Secure evidence and document platform for the criminal justice system
-          </div>
+        <div className="page-head" style={{ marginBottom: 18 }}>
+          <h1>{t('officerConsole')}</h1>
+          <p className="lede">
+            <span lang="hi">प्रमाण</span> - <em>proof, the valid means of knowledge</em>. Access is
+            computed from your attributes at the moment you ask, and every decision is recorded.
+          </p>
         </div>
 
         <div className="grid split">
           <div className="card">
-            <header><h3>Choose a role</h3><div className="spacer" />
+            <header><h3>Choose an officer</h3><div className="spacer" />
               <span className="small muted">{personas.length} personas</span>
             </header>
             <div className="body stack" style={{ gap: 7, maxHeight: 430, overflowY: 'auto' }}>
@@ -113,6 +116,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </div>
+    </PublicShell>
   );
 }

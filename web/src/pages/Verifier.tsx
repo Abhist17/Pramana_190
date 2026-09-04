@@ -1,6 +1,8 @@
 import { useCallback, useRef, useState } from 'react';
 import { Banner, Card, Chip, Hash } from '../components/ui.tsx';
 import { when } from '../lib/format.ts';
+import { PublicShell } from '../components/GovChrome.tsx';
+import { useGov } from '../lib/gov.tsx';
 
 type Verdict = {
   verdict: 'VERIFIED' | 'NOT_FOUND';
@@ -18,6 +20,7 @@ type Verdict = {
  * the other side can check.
  */
 export default function Verifier() {
+  const { t } = useGov();
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [busy, setBusy] = useState(false);
   const [over, setOver] = useState(false);
@@ -45,11 +48,14 @@ export default function Verifier() {
   }, []);
 
   return (
-    <div className="public">
+    <PublicShell trail={[{ label: t('navVerifier') }]}>
       <div className="shell">
-        <div className="mast">
-          <div className="name">PRAMANA</div>
-          <div className="sub">Public evidence verifier</div>
+        <div className="page-head" style={{ marginBottom: 18 }}>
+          <h1>{t('navVerifier')}</h1>
+          <p className="lede">
+            Check any document against the consortium ledger yourself. No account, no sign-in, and
+            nothing about the document is disclosed to you or by you.
+          </p>
         </div>
 
         <div className="stack">
@@ -151,6 +157,6 @@ export default function Verifier() {
           </div>
         </div>
       </div>
-    </div>
+    </PublicShell>
   );
 }

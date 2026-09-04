@@ -15,6 +15,7 @@ import Compliance from './pages/Compliance.tsx';
 import PolicyConsole from './pages/PolicyConsole.tsx';
 import Verifier from './pages/Verifier.tsx';
 import CitizenPortal from './pages/CitizenPortal.tsx';
+import Accessibility from './pages/Accessibility.tsx';
 
 export default function App() {
   const { user, loading } = useApp();
@@ -24,6 +25,8 @@ export default function App() {
       {/* Unauthenticated surfaces: they prove things are true without revealing what they say. */}
       <Route path="/verify" element={<Verifier />} />
       <Route path="/citizen" element={<CitizenPortal />} />
+      {/* Statutory pages a GoI site must publish, reachable without a session. */}
+      <Route path="/accessibility" element={<Accessibility />} />
       <Route
         path="*"
         element={
