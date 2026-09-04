@@ -52,7 +52,7 @@ export default function Compliance() {
       </Banner>
 
       <div className="grid c4">
-        <Stat label="Open obligations" value={board.summary.total} />
+        <Stat label="Tracked obligations" value={board.summary.total} note="open and breached" />
         <Stat label="Breached" value={board.summary.breached} tone={board.summary.breached ? 'danger' : 'ok'} />
         <Stat label="Critical (>90%)" value={board.summary.critical} tone={board.summary.critical ? 'warn' : 'ok'} />
         <Stat label="Warning (>60%)" value={board.summary.warning} />

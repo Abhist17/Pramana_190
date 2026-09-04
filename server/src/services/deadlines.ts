@@ -127,9 +127,17 @@ export function deadlinesForCase(caseId: string): DeadlineView[] {
   return all('SELECT * FROM deadlines WHERE case_id = ? ORDER BY due_at', caseId).map(view);
 }
 
-/** Station / district compliance board, worst-first. */
+/**
+ * Station / district compliance board, worst-first.
+ *
+ * Includes breached obligations, not just open ones. sweep() moves a deadline out
+ * of 'open' the moment it expires, so filtering on 'open' alone made a breach
+ * vanish from the board at exactly the point it started to matter - the board
+ * would report zero breaches while the alert log filled with them. Only 'met' and
+ * 'waived' are settled and drop off.
+ */
 export function deadlineBoard(filter: { district?: string; station?: string } = {}): DeadlineView[] {
-  const clauses: string[] = ["d.status = 'open'"];
+  const clauses: string[] = ["d.status IN ('open', 'breached')"];
   const params: unknown[] = [];
   if (filter.district) { clauses.push('c.district = ?'); params.push(filter.district); }
   if (filter.station) { clauses.push('c.station = ?'); params.push(filter.station); }

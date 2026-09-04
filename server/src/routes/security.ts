@@ -218,9 +218,9 @@ export default async function securityRoutes(app: FastifyInstance) {
       board,
       summary: {
         total: board.length,
-        breached: board.filter((d) => d.percentElapsed >= 1).length,
-        critical: board.filter((d) => d.percentElapsed >= 0.9 && d.percentElapsed < 1).length,
-        warning: board.filter((d) => d.percentElapsed >= 0.6 && d.percentElapsed < 0.9).length,
+        breached: board.filter((d) => d.status === 'breached' || d.percentElapsed >= 1).length,
+        critical: board.filter((d) => d.status !== 'breached' && d.percentElapsed >= 0.9 && d.percentElapsed < 1).length,
+        warning: board.filter((d) => d.status !== 'breached' && d.percentElapsed >= 0.6 && d.percentElapsed < 0.9).length,
       },
     };
   });
@@ -252,8 +252,8 @@ export default async function securityRoutes(app: FastifyInstance) {
       compromised: get<{ n: number }>("SELECT COUNT(*) AS n FROM documents WHERE integrity_status = 'compromised'")?.n ?? 0,
       ledger: status,
       deadlines: {
-        breached: board.filter((d) => d.percentElapsed >= 1).length,
-        critical: board.filter((d) => d.percentElapsed >= 0.9 && d.percentElapsed < 1).length,
+        breached: board.filter((d) => d.status === 'breached' || d.percentElapsed >= 1).length,
+        critical: board.filter((d) => d.status !== 'breached' && d.percentElapsed >= 0.9 && d.percentElapsed < 1).length,
         upcoming: board.slice(0, 6),
       },
       alerts: openAlerts(6).map((row) => ({ ...row, detail: json((row as { detail: string }).detail, {}) })),
