@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1000" width="1480" height="1000" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker>
+  <marker id="arrowP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#6d28d9"/></marker>
+</defs>
+<rect x="0" y="0" width="1480" height="1000" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="1.2"/>
+<text x="48" y="52" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="27" fill="#0f172a" font-weight="750" text-anchor="start" letter-spacing="3.5" opacity="1">PRAMANA</text>
+<text x="238" y="52" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">Secure evidence and document platform for the criminal justice system</text>
+<text x="48" y="74" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#94a3b8" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">SIH 2026 - PS 26190 - MHA / NCRB Women Safety Division</text>
+<line x1="48" y1="90" x2="1432" y2="90" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="48" y="120" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">CLIENTS</text>
+<rect x="48.0" y="134" width="256.0" height="54" rx="7" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="176.0" y="158.0" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#1d4ed8" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Officer console</text>
+<text x="176.0" y="174.0" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">case work, capture, audit</text>
+<rect x="316.0" y="134" width="256.0" height="54" rx="7" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="444.0" y="158.0" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#1d4ed8" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Public verifier</text>
+<text x="444.0" y="174.0" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">no login, no content</text>
+<rect x="584.0" y="134" width="256.0" height="54" rx="7" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="712.0" y="158.0" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#1d4ed8" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Citizen portal</text>
+<text x="712.0" y="174.0" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">case status by OTP</text>
+<line x1="444.0" y1="192" x2="444.0" y2="218" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="48" y="236" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#b45309" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">ZERO-TRUST GUARD   -   SINGLE CHOKE POINT FOR EVERY REQUEST</text>
+<rect x="48" y="250" width="792" height="82" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2"/>
+<text x="62.0" y="278" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#b45309" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">1  Authenticate</text>
+<text x="62.0" y="296" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">token / DSC / device</text>
+<text x="259.0" y="278" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#b45309" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">2  ABAC evaluate</text>
+<text x="259.0" y="296" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">17 rules, deny by default</text>
+<text x="456.0" y="278" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#b45309" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">3  Audit record</text>
+<text x="456.0" y="296" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">allow AND deny</text>
+<text x="653.0" y="278" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#b45309" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">4  Anomaly rescore</text>
+<text x="653.0" y="296" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">UEBA over the same stream</text>
+<text x="62" y="320" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#b45309" font-weight="400" text-anchor="start" letter-spacing="0" opacity="0.9">No implicit access. No "admin sees everything". No role that can read a sealed document alone.</text>
+<line x1="444.0" y1="336" x2="444.0" y2="362" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="48" y="380" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">APPLICATION SERVICES</text>
+<rect x="48" y="394" width="792" height="118" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="62.0" y="410" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="121.5" y="429.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">documents</text>
+<rect x="191.0" y="410" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="250.5" y="429.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">custody</text>
+<rect x="320.0" y="410" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="379.5" y="429.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">audit</text>
+<rect x="449.0" y="410" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="508.5" y="429.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">certificate</text>
+<rect x="578.0" y="410" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="637.5" y="429.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">women safety</text>
+<rect x="707.0" y="410" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="766.5" y="429.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">sealed cover</text>
+<rect x="62.0" y="452" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="121.5" y="471.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">retention</text>
+<rect x="191.0" y="452" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="250.5" y="471.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">deadlines</text>
+<rect x="320.0" y="452" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="379.5" y="471.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">search</text>
+<rect x="449.0" y="452" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="508.5" y="471.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">extraction</text>
+<rect x="578.0" y="452" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="637.5" y="471.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">redaction</text>
+<rect x="707.0" y="452" width="119.0" height="30" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+<text x="766.5" y="471.5" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">anomaly</text>
+<text x="62" y="500" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">Sealing happens BEFORE storage: hash, encrypt, sign, anchor - in that order.</text>
+<line x1="444.0" y1="516" x2="444.0" y2="542" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="48" y="560" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#047857" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">DATA PLANE</text>
+<rect x="48.0" y="574" width="256.0" height="74" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.2"/>
+<text x="176.0" y="596" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#047857" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Encrypted object store</text>
+<text x="176.0" y="614" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">write-once - AES-256-GCM</text>
+<text x="176.0" y="628" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">per-document key</text>
+<rect x="316.0" y="574" width="256.0" height="74" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.2"/>
+<text x="444.0" y="596" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#047857" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Metadata + index</text>
+<text x="444.0" y="614" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">SQLite / Postgres + RLS</text>
+<text x="444.0" y="628" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">BM25 + dense vectors</text>
+<rect x="584.0" y="574" width="256.0" height="74" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.2"/>
+<text x="712.0" y="596" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#047857" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Derived namespace</text>
+<text x="712.0" y="614" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">OCR - entities - embeddings</text>
+<text x="712.0" y="628" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">never touches the original</text>
+<text x="48" y="682" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#047857" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">KEY HIERARCHY</text>
+<rect x="48" y="696" width="792" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="66" y="725" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#0f172a" font-weight="500" text-anchor="start" letter-spacing="0" opacity="1">document data key</text>
+<text x="191.0" y="725" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#94a3b8" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">wrapped by</text>
+<text x="275.0" y="725" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#0f172a" font-weight="500" text-anchor="start" letter-spacing="0" opacity="1">case key</text>
+<text x="337.0" y="725" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#94a3b8" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">wrapped by</text>
+<text x="421.0" y="725" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#0f172a" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">master key (HSM in production)</text>
+<text x="66" y="712" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">Compromise of one key exposes exactly one document.</text>
+<text x="48" y="772" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#475569" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">INTEGRATION BUS   -   INTERFACES DEFINED, NOT YET WIRED</text>
+<rect x="48" y="786" width="792" height="44" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="62.0" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="113.14285714285714" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">CCTNS</text>
+<rect x="172.28571428571428" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="223.42857142857142" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">ICJS</text>
+<rect x="282.57142857142856" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="333.7142857142857" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">eCourts</text>
+<rect x="392.8571428571429" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="444.00000000000006" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">eSakshya</text>
+<rect x="503.14285714285717" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="554.2857142857143" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">FSL LIMS</text>
+<rect x="613.4285714285714" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="664.5714285714286" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">DigiLocker</text>
+<rect x="723.7142857142858" y="796" width="102.28571428571429" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="774.8571428571429" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#475569" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">SIEM</text>
+<line x1="872" y1="112" x2="872" y2="900" stroke="#6d28d9" stroke-width="1.6" stroke-dasharray="6 5" opacity=".55"/>
+<g transform="translate(862,690) rotate(-90)"><text x="0" y="0" text-anchor="middle" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#6d28d9" font-weight="700" letter-spacing="1.4">PROOF CROSSES - CONTENT NEVER DOES</text></g>
+<text x="910" y="120" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">PERMISSIONED CONSORTIUM LEDGER</text>
+<rect x="910" y="134" width="522" height="300" rx="8" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="926" y="158" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">Six contracts. Hashes, codes and counters only.</text>
+<rect x="926" y="172" width="490" height="36" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="938" y="187" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">DocumentRegistry</text>
+<text x="938" y="201" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">fingerprints, version chains</text>
+<rect x="926" y="214" width="490" height="36" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="938" y="229" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">CustodyLedger</text>
+<text x="938" y="243" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">transfers, documents + exhibits</text>
+<rect x="926" y="256" width="490" height="36" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="938" y="271" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">AuditAnchor</text>
+<text x="938" y="285" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">Merkle roots of audit batches</text>
+<rect x="926" y="298" width="490" height="36" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="938" y="313" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">AccessPolicyRegistry</text>
+<text x="938" y="327" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">policy hash + effective period</text>
+<rect x="926" y="340" width="490" height="36" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="938" y="355" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">SealedCustody</text>
+<text x="938" y="369" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">m-of-n unseal, waiting period</text>
+<rect x="926" y="382" width="490" height="36" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="938" y="397" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="11.5" fill="#6d28d9" font-weight="650" text-anchor="start" letter-spacing="0" opacity="1">RetentionRegistry</text>
+<text x="938" y="411" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">legal hold, destruction certs</text>
+<text x="910" y="458" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">VALIDATOR SET   -   INSTITUTIONS THAT DO NOT REPORT TO ONE ANOTHER</text>
+<rect x="910" y="472" width="522" height="62" rx="8" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2"/>
+<rect x="926.0" y="486" width="92.4" height="34" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="972.2" y="507" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">NCRB</text>
+<rect x="1025.4" y="486" width="92.4" height="34" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="1071.6000000000001" y="507" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">State CID</text>
+<rect x="1124.8" y="486" width="92.4" height="34" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="1171.0" y="507" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Judiciary</text>
+<rect x="1224.2" y="486" width="92.4" height="34" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="1270.4" y="507" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">FSL</text>
+<rect x="1323.6" y="486" width="92.4" height="34" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+<text x="1369.8" y="507" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">Prosecution</text>
+<text x="926" y="530" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">QBFT, 4-of-5 quorum. None can rewrite history alone.</text>
+<text x="910" y="558" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">WHAT CROSSES THE BOUNDARY</text>
+<rect x="910" y="572" width="255.0" height="150" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.2"/>
+<text x="924" y="592" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#047857" font-weight="700" text-anchor="start" letter-spacing="1" opacity="1">ON CHAIN</text>
+<text x="924" y="610" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  document hash + algorithm</text>
+<text x="924" y="625" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  version pointers</text>
+<text x="924" y="640" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  custody events (pseudonymous)</text>
+<text x="924" y="655" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  Merkle root per audit batch</text>
+<text x="924" y="670" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  active policy hash</text>
+<text x="924" y="685" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  seal / unseal events</text>
+<text x="924" y="700" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+  legal holds, destruction certs</text>
+<rect x="1177.0" y="572" width="255.0" height="150" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.2"/>
+<text x="1191.0" y="592" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#b91c1c" font-weight="700" text-anchor="start" letter-spacing="1" opacity="1">NEVER ON CHAIN</text>
+<text x="1191.0" y="610" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">x  document content, in any form</text>
+<text x="1191.0" y="625" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">x  names, addresses, ID numbers</text>
+<text x="1191.0" y="640" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">x  case narratives</text>
+<text x="1191.0" y="655" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">x  anything content is inferable from</text>
+<text x="1191.0" y="670" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">x  real officer identifiers</text>
+<text x="1191.0" y="700" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" fill="#b91c1c" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">A guard rejects any such payload</text>
+<text x="1191.0" y="712" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" fill="#b91c1c" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">and throws. It is not overridable.</text>
+<text x="910" y="748" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">WHY THIS SCALES</text>
+<rect x="910" y="762" width="522" height="68" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="926" y="782" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">16,000 stations x millions of events a day cannot each be a transaction.</text>
+<text x="926" y="798" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">Documents anchor individually. Audit events are Merkle-batched: one root</text>
+<text x="926" y="812" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">per station per window, every event keeps a short inclusion proof.</text>
+<line x1="848" y1="300" x2="904" y2="300" stroke="#6d28d9" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrowP)"/>
+<text x="875.0" y="291" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">anchor</text>
+<line x1="848" y1="455" x2="904" y2="455" stroke="#6d28d9" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrowP)"/>
+<text x="875.0" y="446" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" fill="#6d28d9" font-weight="650" text-anchor="middle" letter-spacing="0" opacity="1">verify</text>
+<line x1="48" y1="900" x2="1432" y2="900" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="48" y="928" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="1.6" opacity="1">DOCUMENT LIFECYCLE</text>
+<rect x="48.0" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="120.88888888888889" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">CAPTURE</text>
+<text x="120.88888888888889" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">field / scan</text>
+<text x="195.77777777777777" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="202.77777777777777" y="944" width="145.77777777777777" height="38" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2"/>
+<text x="275.66666666666663" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#b45309" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">SEAL</text>
+<text x="275.66666666666663" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">hash+sign+anchor</text>
+<text x="350.55555555555554" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="357.55555555555554" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="430.44444444444446" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">CLASSIFY</text>
+<text x="430.44444444444446" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">language, entities</text>
+<text x="505.3333333333333" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="512.3333333333333" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="585.2222222222222" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">STORE</text>
+<text x="585.2222222222222" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">encrypted, WORM</text>
+<text x="660.1111111111111" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="667.1111111111111" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="740.0" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">USE</text>
+<text x="740.0" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">logged, watermarked</text>
+<text x="814.8888888888889" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="821.8888888888889" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="894.7777777777778" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">TRANSFER</text>
+<text x="894.7777777777778" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">signed both sides</text>
+<text x="969.6666666666667" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="976.6666666666666" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="1049.5555555555554" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">PRODUCE</text>
+<text x="1049.5555555555554" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">court certificate</text>
+<text x="1124.4444444444443" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="1131.4444444444443" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="1204.3333333333333" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">RETAIN</text>
+<text x="1204.3333333333333" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">retention class</text>
+<text x="1279.2222222222222" y="967" font-size="12" fill="#94a3b8">&#8250;</text>
+<rect x="1286.2222222222222" y="944" width="145.77777777777777" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="1359.111111111111" y="960" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0.4" opacity="1">DISPOSE</text>
+<text x="1359.111111111111" y="973" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">erasure + cert</text>
+</svg>

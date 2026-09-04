@@ -1,4 +1,4 @@
-/** The six on-chain contracts. Kept small on purpose — see contracts/. */
+/** The six on-chain contracts. Kept small on purpose - see contracts/. */
 export type ContractName =
   | 'DocumentRegistry'
   | 'CustodyLedger'

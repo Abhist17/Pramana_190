@@ -5,7 +5,7 @@ const kind = (label: string) => ethers.keccak256(ethers.toUtf8Bytes(label));
 const h = (label: string) => ethers.sha256(ethers.toUtf8Bytes(label));
 const ZERO = ethers.ZeroHash;
 
-/** Mirrors server/src/core/merkle.ts — same domain separation, same promotion rule. */
+/** Mirrors server/src/core/merkle.ts - same domain separation, same promotion rule. */
 function hashLeaf(payload: string): string {
   return ethers.sha256(ethers.concat(['0x00', ethers.toUtf8Bytes(payload)]));
 }
@@ -45,7 +45,7 @@ describe('AnchorBase', () => {
     const registry = await (await ethers.getContractFactory('DocumentRegistry')).deploy();
     await registry.anchor(kind('document'), h('subject'), h('payload'));
     expect(await registry.isAnchored(h('payload'))).to.equal(true);
-    // Re-anchoring would let a later writer move the recorded time — the exact
+    // Re-anchoring would let a later writer move the recorded time - the exact
     // property the whole design depends on being impossible.
     await expect(registry.anchor(kind('document'), h('subject'), h('payload')))
       .to.be.revertedWithCustomError(registry, 'AlreadyAnchored');
@@ -136,7 +136,7 @@ describe('AuditAnchor', () => {
 
     await audit.anchorBatch(root, kind('KALMESHWAR-PS'), leaves.length);
 
-    // Every leaf must verify — this is the promise made to a court about any one line.
+    // Every leaf must verify - this is the promise made to a court about any one line.
     for (let index = 0; index < leaves.length; index++) {
       const { path, isLeft } = proofFor(leaves, index);
       const [included] = await audit.verifyInclusion(root, leaves[index]!, path, isLeft);
@@ -190,7 +190,7 @@ describe('SealedCustody', () => {
     return custody;
   }
 
-  it('refuses a threshold of one — that is not threshold custody', async () => {
+  it('refuses a threshold of one - that is not threshold custody', async () => {
     const custody = await (await ethers.getContractFactory('SealedCustody')).deploy();
     await expect(custody.sealDocument(doc, 1, 3)).to.be.revertedWithCustomError(custody, 'ThresholdTooLow');
   });

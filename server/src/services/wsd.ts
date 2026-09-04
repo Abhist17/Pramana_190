@@ -11,7 +11,7 @@ import { config } from '../config.ts';
  *
  * The problem statement is sponsored by the Women Safety Division, not NCRB
  * generally. That division owns the systems around sexual offences, offences
- * against children, trafficking and victim protection — the most sensitive class
+ * against children, trafficking and victim protection - the most sensitive class
  * of case file in Indian policing, carrying legal obligations no generic DMS
  * satisfies.
  *
@@ -53,7 +53,7 @@ export function assessSections(sections: string[]): SensitivityAssessment {
   for (const section of sections) {
     for (const rule of SENSITIVE_SECTIONS) {
       if (rule.pattern.test(section)) {
-        matched.push(`${section} — ${rule.label}`);
+        matched.push(`${section} - ${rule.label}`);
         if (category === 'general' || rule.category === 'pocso') category = rule.category;
       }
     }
@@ -133,7 +133,7 @@ export function vaultEntriesForCase(caseId: string) {
 }
 
 /**
- * De-anonymisation is a distinct, privileged operation — never a side effect of
+ * De-anonymisation is a distinct, privileged operation - never a side effect of
  * opening a document. It requires dual authorisation, a recorded justification, a
  * waiting period during which every custodian is notified, and it is anchored
  * on-chain as a first-class event separate from ordinary document access.
@@ -241,8 +241,8 @@ export function pendingVaultRequests(caseId?: string) {
 
 /**
  * Statutory role enforcement: where the law requires a particular officer to
- * perform a particular act — statements of women and child victims being recorded
- * by a woman officer — the system enforces it at the point of upload rather than
+ * perform a particular act - statements of women and child victims being recorded
+ * by a woman officer - the system enforces it at the point of upload rather than
  * finding it in an audit months later.
  */
 export const WOMAN_OFFICER_REQUIRED_TYPES = ['victim_statement', 'victim_statement_164', 'medical_consent'];

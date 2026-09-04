@@ -3,7 +3,7 @@ import { id } from '../core/ids.ts';
 import { record as audit } from './audit.ts';
 
 /**
- * Statutory deadline engine — the heart of the compliance value.
+ * Statutory deadline engine - the heart of the compliance value.
  *
  * The 2023 criminal statutes (effective 1 July 2024) created roughly a dozen hard
  * deadlines and several new mandatory digital artefacts, and nobody has built the

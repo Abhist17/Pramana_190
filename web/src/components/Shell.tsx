@@ -87,7 +87,7 @@ export default function Shell({ children }: { children: ReactNode }) {
           <label htmlFor="purpose" style={{ margin: 0 }}>Access purpose</label>
           <select id="purpose" value={purpose} onChange={(e) => setPurpose(e.target.value)} style={{ width: 250 }}>
             {Object.entries(purposeCodes).map(([code, label]) => (
-              <option key={code} value={code}>{code} — {label}</option>
+              <option key={code} value={code}>{code} - {label}</option>
             ))}
           </select>
         </div>

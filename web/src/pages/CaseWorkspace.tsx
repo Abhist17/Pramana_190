@@ -82,11 +82,11 @@ export default function CaseWorkspace() {
       </div>
 
       {c.sensitiveMode && (
-        <Banner tone="warn" title="Sensitive Case Mode is active — escalated automatically on registration">
+        <Banner tone="warn" title="Sensitive Case Mode is active - escalated automatically on registration">
           This case does not appear in station-wide listings. Rank alone grants nothing: access requires
           explicit assignment. Every view is watermarked, bulk export and print are disabled, and the
           complainant appears everywhere as{' '}
-          <strong className="mono">{c.victimPseudonym ?? 'a pseudonym'}</strong> — her name is not in any
+          <strong className="mono">{c.victimPseudonym ?? 'a pseudonym'}</strong> - her name is not in any
           working document.
           {detail.sectionsAssessment.matched.length > 0 && (
             <div className="tiny" style={{ marginTop: 6 }}>
@@ -188,7 +188,7 @@ export default function CaseWorkspace() {
                     ))}
                     <div className="tiny muted">
                       Real particulars are encrypted separately. Revealing one needs dual authorisation,
-                      a written justification and a waiting period — see the Women Safety console.
+                      a written justification and a waiting period - see the Women Safety console.
                     </div>
                   </div>
                 )}
@@ -263,7 +263,7 @@ function DeadlineList({ deadlines, onDone, toast }: {
                 {deadline.status === 'open' && (
                   <button className="sm" onClick={() => {
                     const reason = deadline.percentElapsed >= 1
-                      ? window.prompt('This deadline has passed. Record the reason for delay — it becomes part of the permanent case record.') ?? undefined
+                      ? window.prompt('This deadline has passed. Record the reason for delay - it becomes part of the permanent case record.') ?? undefined
                       : undefined;
                     api.post(`/security/deadlines/${deadline.id}/complete`, { delayReason: reason })
                       .then(() => { toast('ok', 'Deadline marked complete'); onDone(); })
@@ -356,7 +356,7 @@ function UploadModal({ caseId, sensitiveMode, onClose, onDone }: {
       </div>
       <div className="field">
         <label>Title</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Witness statement — …" />
+        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Witness statement - …" />
       </div>
       <div className="field">
         <label>Document type</label>
@@ -367,13 +367,13 @@ function UploadModal({ caseId, sensitiveMode, onClose, onDone }: {
       {sensitiveMode && docType === 'victim_statement' && (
         <Banner tone="warn" title="Statutory role check applies">
           In a sensitive case this statement class may only be created by a woman police officer.
-          If your account does not carry that attribute the upload is refused at this point — and the
+          If your account does not carry that attribute the upload is refused at this point - and the
           attempt is logged.
         </Banner>
       )}
       <div className="tiny muted" style={{ marginTop: 12, lineHeight: 1.6 }}>
         On submit the file is fingerprinted with SHA-256, encrypted under a fresh per-document key,
-        signed with your credential, and its fingerprint written to the consortium ledger — in that
+        signed with your credential, and its fingerprint written to the consortium ledger - in that
         order, before it is stored.
       </div>
     </Modal>

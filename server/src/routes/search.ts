@@ -27,7 +27,7 @@ export default async function searchRoutes(app: FastifyInstance) {
 
     /**
      * Results are filtered through the same policy engine as a direct read.
-     * A document you may not see does not appear — and does not appear as a
+     * A document you may not see does not appear - and does not appear as a
      * "restricted result" either, because the existence of a sealed document can
      * itself be sensitive.
      */
@@ -65,7 +65,7 @@ export default async function searchRoutes(app: FastifyInstance) {
       totalMatched: raw.length,
       withheldByPolicy: raw.length - permitted.length,
       model: MODEL_ID,
-      note: 'Hybrid retrieval: BM25 lexical + dense semantic, fused by reciprocal rank. Cross-script matching is active — an English query reaches Hindi documents.',
+      note: 'Hybrid retrieval: BM25 lexical + dense semantic, fused by reciprocal rank. Cross-script matching is active - an English query reaches Hindi documents.',
     };
   });
 }

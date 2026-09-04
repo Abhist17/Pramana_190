@@ -99,7 +99,7 @@ export function Modal({ title, children, footer, onClose }: {
 /** Copy-to-clipboard hash with a short display form. */
 export function Hash({ value, big }: { value?: string | null; big?: boolean }) {
   const [copied, setCopied] = useState(false);
-  if (!value) return <span className="muted">—</span>;
+  if (!value) return <span className="muted">-</span>;
   return (
     <span
       className={`hash${big ? ' big' : ''}`}
@@ -118,7 +118,7 @@ export function Loading({ what = 'Loading' }: { what?: string }) {
 }
 
 /**
- * Highlights the exact characters that differ between two digests — the visual
+ * Highlights the exact characters that differ between two digests - the visual
  * that makes "the fingerprint changed completely" land in a demo.
  */
 export function HashDiff({ expected, actual }: { expected: string; actual: string }) {

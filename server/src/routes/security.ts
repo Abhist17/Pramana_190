@@ -105,7 +105,7 @@ export default async function securityRoutes(app: FastifyInstance) {
 
   /**
    * Policy simulator. Pick any officer, any resource, any action and see exactly
-   * which rules fire and why — including the ones that did not match. This is the
+   * which rules fire and why - including the ones that did not match. This is the
    * screen that turns "we have access control" into something a judge can check.
    */
   app.post('/policy/simulate', async (request, reply) => {

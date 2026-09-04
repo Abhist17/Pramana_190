@@ -72,7 +72,7 @@ export default function Dashboard() {
                     const tone = deadlineTone(deadline.percentElapsed);
                     return (
                       <tr key={deadline.id}>
-                        <td><Link to={`/cases/${deadline.caseId}`}>{deadline.caseNumber ?? '—'}</Link></td>
+                        <td><Link to={`/cases/${deadline.caseId}`}>{deadline.caseNumber ?? '-'}</Link></td>
                         <td>
                           <div>{deadline.kind.replace(/_/g, ' ')}</div>
                           <div className="tiny muted">{deadline.statuteRef}</div>
@@ -91,7 +91,7 @@ export default function Dashboard() {
                         <td>
                           {deadline.escalateToRank
                             ? <Chip tone={tone}>{RANK[deadline.escalateToRank] ?? `rank ${deadline.escalateToRank}`}</Chip>
-                            : <span className="muted small">—</span>}
+                            : <span className="muted small">-</span>}
                         </td>
                       </tr>
                     );
@@ -116,7 +116,7 @@ export default function Dashboard() {
             {data.ledger.validators && (
               <>
                 <div className="divider" />
-                <div className="tiny muted" style={{ marginBottom: 6 }}>Validator set — independent institutions</div>
+                <div className="tiny muted" style={{ marginBottom: 6 }}>Validator set - independent institutions</div>
                 <div className="row" style={{ gap: 5 }}>
                   {data.ledger.validators.map((validator) => <Chip key={validator} tone="n">{validator}</Chip>)}
                 </div>

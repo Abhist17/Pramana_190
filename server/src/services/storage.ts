@@ -51,7 +51,7 @@ export function eraseObject(key: string): void {
   if (existsSync(target)) writeFileSync(target, Buffer.alloc(0));
 }
 
-/** DEMO ONLY — used by the tamper demonstration. See routes/demo.ts. */
+/** DEMO ONLY - used by the tamper demonstration. See routes/demo.ts. */
 export function corruptObject(key: string): { before: number; after: number } {
   const target = pathFor(key);
   const data = readFileSync(target);

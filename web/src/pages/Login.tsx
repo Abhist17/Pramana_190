@@ -43,7 +43,7 @@ export default function Login() {
         <div className="mast">
           <div className="name">PRAMANA</div>
           <div className="sub">
-            प्रमाण — <em>proof, the valid means of knowledge</em><br />
+            प्रमाण - <em>proof, the valid means of knowledge</em><br />
             Secure evidence and document platform for the criminal justice system
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function Login() {
                     </span>
                   </span>
                   <span className="row" style={{ gap: 4 }}>
-                    {persona.isWomanOfficer && <span className="chip a" title="Woman police officer — required for certain statement classes">W</span>}
+                    {persona.isWomanOfficer && <span className="chip a" title="Woman police officer - required for certain statement classes">W</span>}
                     <span className="chip n" title="Maximum sensitivity level readable">L{persona.clearanceLevel}</span>
                   </span>
                 </button>
@@ -95,14 +95,14 @@ export default function Login() {
                 <div className="tiny muted" style={{ marginTop: 10, lineHeight: 1.55 }}>
                   Every demonstration account uses the password <code>pramana</code>.
                   Production authenticates with the Class&nbsp;3 DSC token officers already carry,
-                  Aadhaar eSign, or a FIDO2 key — never a shared password.
+                  Aadhaar eSign, or a FIDO2 key - never a shared password.
                 </div>
               </div>
             </form>
 
             <Banner tone="info" title="Why the role you pick matters">
-              Access is computed from attributes — rank, jurisdiction, explicit case assignment,
-              document sensitivity and stated purpose — not from a role name. Sign in as an
+              Access is computed from attributes - rank, jurisdiction, explicit case assignment,
+              document sensitivity and stated purpose - not from a role name. Sign in as an
               unassigned Superintendent and a Women Safety case stays shut.
             </Banner>
 

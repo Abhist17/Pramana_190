@@ -1,4 +1,4 @@
-# PRAMANA — architecture
+# PRAMANA - architecture
 
 ## The shape of the problem
 
@@ -18,7 +18,7 @@ Four requirements fall out, in priority order:
 | 3 | **Findability** | A twelve-year-old file, partly handwritten, partly in Hindi, retrievable in seconds |
 | 4 | **Auditability** | Reconstruct the complete life history of any document |
 
-Everything else — collaboration, workflow, dashboards — is downstream of these.
+Everything else - collaboration, workflow, dashboards - is downstream of these.
 
 ## Design principles
 
@@ -87,25 +87,25 @@ anywhere or been seen by a server administrator. Everything after that is verifi
 
 ## Cryptography
 
-**Key hierarchy** — `document data key → case key → master key`. Every document gets its own AES-256-GCM
+**Key hierarchy** - `document data key → case key → master key`. Every document gets its own AES-256-GCM
 key, so compromise of one key exposes exactly one document. The document id is bound in as associated
 data, so a ciphertext cannot be moved between documents.
 
-**Hashing** — SHA-256, with the algorithm identifier stored beside every digest so migration to a
+**Hashing** - SHA-256, with the algorithm identifier stored beside every digest so migration to a
 stronger function is a planned re-anchoring rather than a crisis.
 
-**Signatures** — Ed25519, labelled `SIMULATED-DSC` everywhere it surfaces. Production signs with the
+**Signatures** - Ed25519, labelled `SIMULATED-DSC` everywhere it surfaces. Production signs with the
 CCA-licensed Class 3 token officers already carry, or Aadhaar eSign.
 
-**Threshold custody** — Shamir over GF(2^8) for Level-4 sealed cover. On sealing, the single-party
+**Threshold custody** - Shamir over GF(2^8) for Level-4 sealed cover. On sealing, the single-party
 wrapped key is **destroyed**, so from that moment the only route to the plaintext is *m* of *n*
-custodians cooperating. Fewer than *m* shares reveal nothing — not less information, nothing.
+custodians cooperating. Fewer than *m* shares reveal nothing - not less information, nothing.
 
 ## Why a blockchain, and precisely what it does
 
 A database cannot provide the one property that matters here: **non-repudiable ordering across
 institutions that do not trust each other.** Whoever controls a database can change it, including its
-timestamps. The consortium is the argument — independent nodes run by NCRB, the State CID, the
+timestamps. The consortium is the argument - independent nodes run by NCRB, the State CID, the
 judiciary, the forensic laboratories and the prosecution directorate. None reports to another, so no
 single institution can rewrite history, and the bodies with an incentive to alter a record are checked
 by bodies with an incentive to catch them.
@@ -116,7 +116,7 @@ events, legal holds and destruction certificates.
 
 **What never does:** document content in any form, names, addresses, identification numbers, case
 narratives, or anything from which content could be inferred. Actor identifiers are pseudonymous even
-on a permissioned chain — otherwise the ledger itself becomes a permanent surveillance record of which
+on a permissioned chain - otherwise the ledger itself becomes a permanent surveillance record of which
 officer touched which case.
 
 ### Scaling honestly
@@ -124,13 +124,13 @@ officer touched which case.
 Sixteen thousand police stations, tens of thousands of documents a day, audit events an order of
 magnitude beyond that. Per-event transactions are not viable, and saying otherwise would be dishonest.
 
-- **Document hashes** are anchored individually — that volume is manageable and each document deserves
+- **Document hashes** are anchored individually - that volume is manageable and each document deserves
   its own on-chain identity.
 - **Audit events** are batched into Merkle trees, one root anchored per scope per window. Millions of
   events collapse into a handful of transactions, and every event still gets an individually verifiable
   inclusion proof. This is the design detail that separates understanding blockchain from having heard
   of it.
-- **Custody events** stay individual — they are rare and evidentiarily critical.
+- **Custody events** stay individual - they are rare and evidentiarily critical.
 
 The `AuditAnchor` contract verifies the same proofs the server produces. The contract test suite builds
 a proof in TypeScript and checks it in Solidity, so the two implementations are pinned to each other.
@@ -146,7 +146,7 @@ Evaluation is **deny-overrides with an implicit final deny**: every deny rule is
 permits, and anything nobody explicitly permitted is refused.
 
 The hash of the active policy set is anchored with its effective period. That is what lets us answer, in
-a hearing years later, *which rules governed this access on that day* — closing an argument the defence
+a hearing years later, *which rules governed this access on that day* - closing an argument the defence
 would otherwise open.
 
 Notable consequences, all covered by tests in `server/src/policy/engine.test.ts`:
@@ -156,7 +156,7 @@ Notable consequences, all covered by tests in `server/src/policy/engine.test.ts`
   assigned officer, including by the administrator.
 - **The CISO reads the audit trail and has no rule anywhere granting access to case content.**
 - **A purpose code is mandatory** on every content read, is stored with the event, and is anomaly-scored.
-- **Break-glass exists, because it must** — time-boxed, justified in writing, notifying two supervisors,
+- **Break-glass exists, because it must** - time-boxed, justified in writing, notifying two supervisors,
   permanently flagged. Emergency access should be possible and uncomfortable.
 - **Clearance gates content, not custody.** A record-room clerk lawfully destroys material they were
   never cleared to read; that is what cryptographic erasure is for.
@@ -171,7 +171,7 @@ requires DSP rank and a recorded reason: errors fail towards protection.
 
 **The victim's identity is never in the working documents at all.** It lives in a separately encrypted
 vault; every document, index entry, search result, notification and export refers to a stable pseudonym.
-De-anonymisation is a distinct privileged operation — dual authorisation, written justification,
+De-anonymisation is a distinct privileged operation - dual authorisation, written justification,
 enforced waiting period, all-supervisor notification, anchored on chain.
 
 Today, compliance depends on an officer remembering to be careful with a name written in plain text
@@ -183,8 +183,8 @@ that attribute can create that document class, and blocked attempts are logged.
 
 ## AI, and its guardrails
 
-The pipeline — preprocess, language detection, OCR, classification, entity extraction, sensitivity
-scoring, embeddings, date extraction, entity resolution, PII detection — writes everything to a
+The pipeline - preprocess, language detection, OCR, classification, entity extraction, sensitivity
+scoring, embeddings, date extraction, entity resolution, PII detection - writes everything to a
 **derived-metadata namespace**, versioned independently and marked machine-generated. It never touches
 the sealed original.
 
@@ -193,9 +193,9 @@ the sealed original.
 3. **Redaction proposals require human confirmation** before a redacted rendition is issued.
 4. **No sensitivity de-escalation by AI.** A model may raise a classification; only a human may lower it.
 5. **No predictive policing, no risk scoring of individuals, no bail or guilt prediction.** Not because
-   it is technically hard — because it is the wrong thing to build. We considered it and rejected it.
+   it is technically hard - because it is the wrong thing to build. We considered it and rejected it.
 
-## Demo vs production — every gap, stated
+## Demo vs production - every gap, stated
 
 | Area | This repository | Production |
 |---|---|---|
@@ -216,7 +216,7 @@ much use.
 ## Deployment story
 
 MeitY-empanelled government cloud (NIC / MeghRaj). All storage, all keys, all logs resident in India on
-government-controlled infrastructure. All models on-premise — **no third-party API sees case content.**
+government-controlled infrastructure. All models on-premise - **no third-party API sees case content.**
 For MHA this is not a detail, it is a precondition.
 
 Audit log design targets CERT-In: 180-day in-country retention, NTP-synchronised clocks, a defined

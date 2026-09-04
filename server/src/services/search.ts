@@ -13,7 +13,7 @@ import { tokenize } from './embeddings.ts';
  * sufficient on its own, which is why both run on every query.
  *
  * Results are filtered through the policy engine by the caller BEFORE they are
- * returned. A document you may not see does not appear — and does not appear as a
+ * returned. A document you may not see does not appear - and does not appear as a
  * "restricted result" either, because the existence of a sealed document can
  * itself be sensitive.
  */

@@ -7,7 +7,7 @@ import { id } from '../core/ids.ts';
  * The largest realistic threat in this domain is not an external attacker; it is
  * an officer with entirely legitimate credentials leaking a sensitive file. So
  * this module baselines each user and looks for the shapes that misuse actually
- * takes, and routes what it finds to a supervisor — not to a log nobody reads.
+ * takes, and routes what it finds to a supervisor - not to a log nobody reads.
  *
  * A rules layer over known-bad patterns runs first (deterministic, explainable,
  * demonstrable on stage); production adds sequence and frequency models over the

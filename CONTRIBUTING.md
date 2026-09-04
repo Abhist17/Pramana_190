@@ -10,7 +10,7 @@ npm run seed
 npm run dev
 ```
 
-Node 22.5+ (24 recommended). No database server, no Docker, no native compilation — if `npm install`
+Node 22.5+ (24 recommended). No database server, no Docker, no native compilation - if `npm install`
 asks for a C++ toolchain, something is wrong; say so rather than fighting it.
 
 The `contracts/` package is **separate on purpose** so the main install stays fast. You only need it if
@@ -55,11 +55,11 @@ opened indiacode.nic.in and checked them. Adding a citation without the marker m
 assumes it was checked. See `docs/LEGAL_MAPPING.md`.
 
 **Nothing personal goes on chain.** There is a guard that throws (`server/src/ledger/guard.ts`). If it
-blocks you, it is right and your payload is wrong — anchor a hash instead. Do not weaken the guard.
+blocks you, it is right and your payload is wrong - anchor a hash instead. Do not weaken the guard.
 
 **Access decisions go through the policy engine.** If you find yourself writing `if (user.role ===
 'admin')` in a route, stop: add a rule to `server/src/policy/ruleset.ts` instead. Rules are data so a
-legal change is an edit, not a release. Do not bypass a deny at a call site — if a legitimate action is
+legal change is an edit, not a release. Do not bypass a deny at a call site - if a legitimate action is
 being refused, the action is modelled wrong (this happened once already; see `document.certify`).
 
 **AI output is never authoritative.** Anything a model produces goes to the derived namespace with a
@@ -78,5 +78,5 @@ not in the "must build" or "should build" lists, it is described in the pitch, n
 
 ## Commits and branches
 
-Branch off `main`, one thing per branch, open a PR. Keep commit messages plain and factual — say what
+Branch off `main`, one thing per branch, open a PR. Keep commit messages plain and factual - say what
 changed and why, not how clever it was.

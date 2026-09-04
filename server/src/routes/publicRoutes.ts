@@ -15,7 +15,7 @@ export default async function publicRoutes(app: FastifyInstance) {
   /**
    * Public verifier.
    *
-   * Anyone — defence counsel, a journalist, a judge's clerk — drops a file and
+   * Anyone - defence counsel, a journalist, a judge's clerk - drops a file and
    * learns whether its fingerprint matches an anchored record and when that
    * record was anchored. It reveals nothing about content. That is what converts
    * integrity from a claim into something the other side can check themselves,
@@ -52,7 +52,7 @@ export default async function publicRoutes(app: FastifyInstance) {
         filename,
         sizeBytes: size,
         message:
-          'No anchored record has this fingerprint. Either this file was never sealed by PRAMANA, or it has been altered since it was sealed — a single changed bit produces a completely different fingerprint.',
+          'No anchored record has this fingerprint. Either this file was never sealed by PRAMANA, or it has been altered since it was sealed - a single changed bit produces a completely different fingerprint.',
       };
     }
 
@@ -75,7 +75,7 @@ export default async function publicRoutes(app: FastifyInstance) {
     };
   }
 
-  /** Verify a Merkle inclusion proof standalone — no server trust required. */
+  /** Verify a Merkle inclusion proof standalone - no server trust required. */
   app.post('/verify/audit-proof', async (request, reply) => {
     const proof = request.body as InclusionProof;
     if (!proof?.leaf || !proof.root || !Array.isArray(proof.path)) {
@@ -173,7 +173,7 @@ export default async function publicRoutes(app: FastifyInstance) {
         caseRow.id,
       ),
       statutoryUpdate: deadline
-        ? { dueAt: deadline.due_at, status: deadline.status, basis: 'BNSS s.193(3)(ii) — 90-day progress intimation [VERIFY]' }
+        ? { dueAt: deadline.due_at, status: deadline.status, basis: 'BNSS s.193(3)(ii) - 90-day progress intimation [VERIFY]' }
         : null,
       note: 'This portal shows the stage of the investigation and statutory communications only. Investigative material is never exposed here.',
     };

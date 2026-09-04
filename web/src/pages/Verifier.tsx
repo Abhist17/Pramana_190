@@ -10,7 +10,7 @@ type Verdict = {
 };
 
 /**
- * The public verifier — no login, no account, nothing to trust.
+ * The public verifier - no login, no account, nothing to trust.
  *
  * Hand the laptop to a judge and let them drop the file in themselves. It reveals
  * whether a fingerprint was anchored and when, and nothing whatsoever about
@@ -56,7 +56,7 @@ export default function Verifier() {
           <Banner tone="info" title="Check any document for yourself">
             Drop a file below. This page recomputes its SHA-256 fingerprint and asks the consortium
             ledger whether that exact fingerprint was ever anchored, and when. It tells you nothing about
-            what the document says, which case it belongs to, or who is involved — and it needs no
+            what the document says, which case it belongs to, or who is involved - and it needs no
             account, because you are not being asked to trust us.
           </Banner>
 
@@ -82,11 +82,11 @@ export default function Verifier() {
           {verdict && (
             <Card>
               {verdict.verdict === 'VERIFIED' ? (
-                <Banner tone="ok" title="VERIFIED — this exact file was sealed and anchored">
+                <Banner tone="ok" title="VERIFIED - this exact file was sealed and anchored">
                   {verdict.message}
                 </Banner>
               ) : (
-                <Banner tone="danger" alarm title="NOT FOUND — no anchored record has this fingerprint">
+                <Banner tone="danger" alarm title="NOT FOUND - no anchored record has this fingerprint">
                   {verdict.message}
                 </Banner>
               )}

@@ -14,7 +14,7 @@ type Status = {
  *
  * The complainant checks progress with a reference number and an OTP, without
  * visiting the station. It shows the stage of the investigation and the statutory
- * communications sent — never investigative content.
+ * communications sent - never investigative content.
  */
 export default function CitizenPortal() {
   const [reference, setReference] = useState('FIR-2026-0142');

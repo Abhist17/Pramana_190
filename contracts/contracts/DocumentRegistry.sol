@@ -9,7 +9,7 @@ import "./AnchorBase.sol";
  *
  * `documentHash` is the SHA-256 digest of the plaintext computed at capture,
  * before the document traversed any network. Nothing about the document's
- * content, its case, or the people in it is recorded here — only the fingerprint,
+ * content, its case, or the people in it is recorded here - only the fingerprint,
  * the algorithm identifier, a type code and a version pointer.
  *
  * The algorithm identifier travels with the hash so migration to a stronger

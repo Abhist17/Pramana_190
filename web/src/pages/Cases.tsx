@@ -35,7 +35,7 @@ export default function Cases() {
       {hidden > 0 && (
         <Banner tone="info" title={`${hidden} case${hidden > 1 ? 's are' : ' is'} not listed for you`}>
           The case list is filtered through the same policy engine as a direct read. A case you may not see
-          does not appear — and does not appear as a "restricted" row either, because the existence of a
+          does not appear - and does not appear as a "restricted" row either, because the existence of a
           sealed matter can itself be sensitive.
         </Banner>
       )}
@@ -70,7 +70,7 @@ export default function Cases() {
                       <td>
                         {row.victimPseudonym
                           ? <span className="mono small" title="Identity held in the vault; never in a working document">{row.victimPseudonym}</span>
-                          : <span className="muted small">—</span>}
+                          : <span className="muted small">-</span>}
                       </td>
                       <td className="small">{when(row.registeredAt)}</td>
                     </tr>

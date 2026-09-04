@@ -8,7 +8,7 @@ import { id } from '../core/ids.ts';
  * Everything this module produces is written to a derived namespace
  * (`derived_text`, `embeddings`, `entities`) and is marked machine-generated with
  * a confidence score and a human-verification state. It never touches the sealed
- * original. AI output is an index and a proposal — never evidence.
+ * original. AI output is an index and a proposal - never evidence.
  */
 
 export type ExtractionResult = {

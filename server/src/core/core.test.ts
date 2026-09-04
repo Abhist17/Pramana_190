@@ -68,7 +68,7 @@ describe('shamir threshold sharing', () => {
     assert.notDeepEqual(recovered, secret);
   });
 
-  test('2-of-3 works — the sealed-cover default', () => {
+  test('2-of-3 works - the sealed-cover default', () => {
     const shares = split(secret, 3, 2);
     assert.deepEqual(combine([shares[0]!, shares[2]!]), secret);
   });
@@ -86,7 +86,7 @@ describe('envelope encryption', () => {
     const wrappedCase = wrapKey(caseKey, master);
     const wrappedData = wrapKey(dataKey, caseKey);
 
-    const plaintext = Buffer.from('FIR/2026/0142 — witness statement', 'utf8');
+    const plaintext = Buffer.from('FIR/2026/0142 - witness statement', 'utf8');
     const sealed = encrypt(plaintext, dataKey, Buffer.from('DOC_1'));
 
     const unwrappedCase = unwrapKey(wrappedCase, master);

@@ -156,7 +156,7 @@ export default async function wsdRoutes(app: FastifyInstance) {
       const result = await sealUnderThreshold(documentId, custodians, threshold ?? 2, request.user!.id);
       return {
         ...result,
-        message: `Sealed under ${result.threshold}-of-${result.totalShares} threshold. The single-party key has been destroyed — no individual, administrator included, can now decrypt this document.`,
+        message: `Sealed under ${result.threshold}-of-${result.totalShares} threshold. The single-party key has been destroyed - no individual, administrator included, can now decrypt this document.`,
       };
     } catch (error) {
       return reply.code(400).send(badRequest(String((error as Error).message)));

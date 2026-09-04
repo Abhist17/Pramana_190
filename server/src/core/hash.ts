@@ -26,7 +26,7 @@ export function hashRecord(data: Buffer | string): HashRecord {
  * Deterministic hash of a structured object. Keys are sorted recursively so that
  * two semantically identical objects always produce the same digest regardless of
  * the order their fields happened to be constructed in. Used for audit events,
- * custody events and the access-policy set — anything whose hash must be
+ * custody events and the access-policy set - anything whose hash must be
  * reproducible years later by someone re-serialising the same facts.
  */
 export function canonicalise(value: unknown): string {

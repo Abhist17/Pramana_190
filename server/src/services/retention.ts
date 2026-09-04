@@ -10,7 +10,7 @@ import { record as audit } from './audit.ts';
  *
  * Records are classified by retention class and must be preserved or destroyed on
  * schedule, with a record of destruction (Public Records Act 1993 and state
- * police manual schedules — the exact periods below are placeholders and are
+ * police manual schedules - the exact periods below are placeholders and are
  * flagged as such; a deployment loads the applicable state schedule).
  *
  * Disposal is cryptographic erasure plus a signed certificate of destruction. The

@@ -6,7 +6,7 @@ import { randomBytes } from 'node:crypto';
  *
  * A sealed document's data key is split into n shares held by designated
  * custodians (typically the case judge, the supervising officer and the head of
- * prosecution). Any m of them can reconstruct it; fewer learn nothing at all —
+ * prosecution). Any m of them can reconstruct it; fewer learn nothing at all -
  * not "less information", literally nothing, which is the property that lets us
  * say no single individual, system administrator included, can decrypt a sealed
  * record.

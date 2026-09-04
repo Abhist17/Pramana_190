@@ -17,7 +17,7 @@ export function ledger(): LedgerDriver {
 }
 
 /**
- * Anchor a proof. Every write goes through the personal-data guard first — an
+ * Anchor a proof. Every write goes through the personal-data guard first - an
  * on-chain leak is permanent, so this check is not optional and not overridable.
  */
 export async function anchor(request: AnchorRequest): Promise<AnchorReceipt> {

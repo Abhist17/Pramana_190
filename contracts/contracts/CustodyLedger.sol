@@ -12,7 +12,7 @@ import "./AnchorBase.sol";
  *
  * Actors are PSEUDONYMOUS here. If real officer identifiers went on chain the
  * ledger would itself become a permanent, un-deletable surveillance record of
- * which officer touched which case — the mapping stays off-chain under access
+ * which officer touched which case - the mapping stays off-chain under access
  * control.
  *
  * The same ledger carries physical exhibits (a seized weapon, a sealed sample, a

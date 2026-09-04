@@ -49,7 +49,7 @@ export default function PolicyConsole() {
   }, []);
 
   // The simulator needs user ids, which /auth/personas deliberately does not expose;
-  // resolve them by signing nothing — the server accepts a username lookup here.
+  // resolve them by signing nothing - the server accepts a username lookup here.
   useEffect(() => {
     if (personas.length === 0) return;
     api.get<{ users: { id: string; username: string }[] }>('/security/users')
@@ -73,30 +73,30 @@ export default function PolicyConsole() {
       <div>
         <h1>Access policy</h1>
         <div className="muted small">
-          Rules are data, not code. A change in the law is a policy edit and a new anchored version — not a release.
+          Rules are data, not code. A change in the law is a policy edit and a new anchored version - not a release.
         </div>
       </div>
 
       <Banner tone="info" title={`Policy v${policy.policy.version} · ${policy.policy.rules.length} rules · deny-overrides with an implicit final deny`}>
         The hash of the active policy set is anchored with its effective period. That is what lets us
         prove, in a hearing years later, exactly which rules governed a specific access on a specific
-        day — closing an argument the defence would otherwise open.
+        day - closing an argument the defence would otherwise open.
         <div style={{ marginTop: 8 }}><Hash value={policy.policyHash} /></div>
         {policy.anchor && (
           <div className="tiny mono" style={{ marginTop: 6, opacity: .85 }}>
-            anchored {when(policy.anchor.created_at)} · block {policy.anchor.block_number ?? '—'} · {policy.anchor.chain_id}
+            anchored {when(policy.anchor.created_at)} · block {policy.anchor.block_number ?? '-'} · {policy.anchor.chain_id}
           </div>
         )}
       </Banner>
 
-      <Card title="Policy simulator" sub="Pick anyone, any resource, any action — see every rule that fires and why">
+      <Card title="Policy simulator" sub="Pick anyone, any resource, any action - see every rule that fires and why">
         <div className="grid c4" style={{ alignItems: 'end' }}>
           <div className="field" style={{ margin: 0 }}>
             <label>Officer</label>
             <select value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })}>
               {personas.map((persona) => (
                 <option key={persona.username} value={persona.username}>
-                  {persona.fullName} — {persona.designation}
+                  {persona.fullName} - {persona.designation}
                 </option>
               ))}
             </select>
@@ -126,7 +126,7 @@ export default function PolicyConsole() {
               <option value="COURT_PRODUCTION">COURT_PRODUCTION</option>
               <option value="RECORDS">RECORDS</option>
               <option value="AUDIT">AUDIT</option>
-              <option value="">(none — omit the purpose code)</option>
+              <option value="">(none - omit the purpose code)</option>
             </select>
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function PolicyConsole() {
           <>
             <div className="divider" />
             <Banner tone={result.decision.effect === 'permit' ? 'ok' : 'danger'}
-                    title={`${result.decision.effect.toUpperCase()} — ${result.decision.ruleId}`}>
+                    title={`${result.decision.effect.toUpperCase()} - ${result.decision.ruleId}`}>
               {result.decision.reason}
               {result.decision.obligations.length > 0 && (
                 <div className="row" style={{ gap: 5, marginTop: 8 }}>
@@ -201,7 +201,7 @@ export default function PolicyConsole() {
                     <div className="tiny muted" style={{ maxWidth: 560 }}>{rule.description}</div>
                   </td>
                   <td className="tiny mono">{rule.actions.join(', ')}</td>
-                  <td className="tiny muted">{rule.basis ?? '—'}</td>
+                  <td className="tiny muted">{rule.basis ?? '-'}</td>
                 </tr>
               ))}
             </tbody>

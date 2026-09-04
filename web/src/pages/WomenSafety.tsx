@@ -34,14 +34,14 @@ export default function WomenSafety() {
       <div>
         <h1>Women Safety Division</h1>
         <div className="muted small">
-          Sexual offences, offences against children, trafficking and domestic violence — the most
+          Sexual offences, offences against children, trafficking and domestic violence - the most
           sensitive class of case file in Indian policing.
         </div>
       </div>
 
       <Banner tone="seal" title="An officer cannot leak what the system never showed him">
         Every complainant below appears only as a pseudonym. Her identifying particulars are not in any
-        working document, index entry, search result, notification or export — they are encrypted in a
+        working document, index entry, search result, notification or export - they are encrypted in a
         separate vault. Revealing one is a distinct privileged operation requiring dual authorisation, a
         written justification and a waiting period, and it is anchored on chain as its own event.
       </Banner>
@@ -59,7 +59,7 @@ export default function WomenSafety() {
         ))}
       </div>
 
-      <Card title="Sensitive cases" sub="Escalated automatically on registration — no officer has to remember" tight>
+      <Card title="Sensitive cases" sub="Escalated automatically on registration - no officer has to remember" tight>
         {data.cases.length === 0 ? <Empty>No sensitive cases.</Empty> : (
           <div className="table-wrap">
             <table>
@@ -72,7 +72,7 @@ export default function WomenSafety() {
                       <div className="tiny muted">{row.title}</div>
                     </td>
                     <td><Chip tone="warn">{row.offenceCategory.replace(/_/g, ' ')}</Chip></td>
-                    <td><span className="mono small">{row.victim ?? '—'}</span></td>
+                    <td><span className="mono small">{row.victim ?? '-'}</span></td>
                     <td className="small">{row.station}<div className="tiny muted">{row.district}</div></td>
                     <td className="small">{when(row.registeredAt)}</td>
                     <td>
@@ -110,7 +110,7 @@ export default function WomenSafety() {
                         </td>
                         <td>{deadline.escalateToRank
                           ? <Chip tone={tone}>L{deadline.escalateToRank}</Chip>
-                          : <span className="muted tiny">—</span>}</td>
+                          : <span className="muted tiny">-</span>}</td>
                       </tr>
                     );
                   })}
@@ -186,7 +186,7 @@ export default function WomenSafety() {
             <div className="divider" />
             <div className="tiny muted">
               Your account {user!.isWomanOfficer
-                ? 'carries the woman-officer attribute — you may record these statements.'
+                ? 'carries the woman-officer attribute - you may record these statements.'
                 : 'does not carry the woman-officer attribute; attempts to create these are blocked and logged.'}
             </div>
           </Card>
@@ -216,7 +216,7 @@ function RequestModal({ info, onClose, onDone }: {
 
   return (
     <Modal
-      title={`Request de-anonymisation — ${info.caseNumber}`}
+      title={`Request de-anonymisation - ${info.caseNumber}`}
       onClose={onClose}
       footer={<>
         <button className="ghost" onClick={onClose}>Cancel</button>
@@ -235,11 +235,11 @@ function RequestModal({ info, onClose, onDone }: {
     >
       <Banner tone="warn" title="This grants you nothing on its own">
         Two approvals from officers of DSP rank or above are required, you cannot approve your own
-        request, and a waiting period runs during which every supervisor is notified — so an
+        request, and a waiting period runs during which every supervisor is notified - so an
         illegitimate request is visible before it can succeed. The request itself is anchored on chain.
       </Banner>
       <div className="field" style={{ marginTop: 14 }}>
-        <label>Written justification (minimum 20 characters — becomes part of the permanent record)</label>
+        <label>Written justification (minimum 20 characters - becomes part of the permanent record)</label>
         <textarea rows={4} value={reason} onChange={(e) => setReason(e.target.value)}
                   placeholder="Identity required in order to…" />
       </div>

@@ -9,7 +9,7 @@ import { config } from '../config.ts';
  * Append-only audit log, Merkle-batched and anchored.
  *
  * Every read, write, print, download, share, export, permission change, failed
- * authorisation *and search query* lands here — searching for a case you have no
+ * authorisation *and search query* lands here - searching for a case you have no
  * connection to is itself a signal, so it is recorded like any other access.
  *
  * The log is designed to be produced in court, not merely read by an
@@ -113,7 +113,7 @@ export function proofForEvent(eventId: string): EventProof | { error: string } {
     'SELECT id, leaf_hash, batch_id FROM audit_events WHERE id = ?', eventId,
   );
   if (!event) return { error: 'event not found' };
-  if (!event.batch_id) return { error: 'event is not yet sealed into a batch — it will be at the next batch interval' };
+  if (!event.batch_id) return { error: 'event is not yet sealed into a batch - it will be at the next batch interval' };
 
   const batch = get<{ id: string; leaves: string; anchor_id: string | null }>(
     'SELECT id, leaves, anchor_id FROM audit_batches WHERE id = ?', event.batch_id,
@@ -122,7 +122,7 @@ export function proofForEvent(eventId: string): EventProof | { error: string } {
 
   const leaves = json<string[]>(batch.leaves, []);
   const index = leaves.indexOf(event.leaf_hash);
-  if (index === -1) return { error: 'leaf missing from its batch — integrity failure' };
+  if (index === -1) return { error: 'leaf missing from its batch - integrity failure' };
 
   const proof = buildProof(leaves, index);
   return {

@@ -4,7 +4,7 @@
  * ┌───────────────────────────────────────────────────────────────────────────┐
  * │ EVERY PERSON, CASE, NUMBER AND ADDRESS BELOW IS FICTIONAL.                │
  * │ No real case data is used, and none should ever be loaded into a demo.    │
- * │ Say this out loud in the pitch — it pre-empts the question and shows      │
+ * │ Say this out loud in the pitch - it pre-empts the question and shows      │
  * │ ethical judgement.                                                        │
  * └───────────────────────────────────────────────────────────────────────────┘
  *
@@ -78,7 +78,7 @@ export const CASES: SeedCase[] = [
     complainantPhone: '9730051182',
     documents: [
       {
-        title: 'First Information Report — FIR/2026/0142',
+        title: 'First Information Report - FIR/2026/0142',
         docClass: 'registration', docType: 'fir', language: 'en', mimeType: 'text/plain',
         body: `FIRST INFORMATION REPORT (fictional demonstration record)
 Police Station: Kalmeshwar PS, District Nagpur Rural
@@ -93,7 +93,7 @@ Contact number provided by the complainant: ${LINKED_PHONE}.
 Case registered and investigation taken up by SI Amit Pawar.`,
       },
       {
-        title: 'Witness statement — Suresh Wankhede',
+        title: 'Witness statement - Suresh Wankhede',
         docClass: 'statement', docType: 'witness_statement', language: 'hi', mimeType: 'text/plain',
         handwritten: true,
         body: `गवाह का बयान (काल्पनिक अभिलेख)
@@ -106,7 +106,7 @@ Case registered and investigation taken up by SI Amit Pawar.`,
 यह बयान मेरे कथन अनुसार लिखा गया है और मैंने पढ़कर सही पाया।`,
       },
       {
-        title: 'Scene photograph — bus stand approach road',
+        title: 'Scene photograph - bus stand approach road',
         docClass: 'evidence', docType: 'scene_photograph', language: 'en', mimeType: 'text/plain',
         captureMeta: DEVICE('Field capture device FC-220', 'SI Amit Pawar'),
         body: `SCENE PHOTOGRAPH METADATA RECORD (fictional)
@@ -116,10 +116,10 @@ Captured on the PRAMANA field app; hashed and signed on the device before transm
 This record stands in for the binary image in the demonstration corpus.`,
       },
       {
-        title: 'Case diary entry — day 3',
+        title: 'Case diary entry - day 3',
         docClass: 'investigation', docType: 'case_diary', language: 'hi', mimeType: 'text/plain',
         handwritten: true,
-        body: `केस डायरी — दिनांक तीसरा दिन (काल्पनिक)
+        body: `केस डायरी - दिनांक तीसरा दिन (काल्पनिक)
 आज घटनास्थल का निरीक्षण किया गया। दो गवाहों के बयान दर्ज किए गए।
 मैरून मोटरसाइकिल MH 40 AB 1234 के पंजीकरण विवरण हेतु परिवहन कार्यालय को पत्र भेजा गया।
 अस्पताल से चोट प्रमाणपत्र प्राप्त करने हेतु आवेदन दिया गया।
@@ -129,7 +129,7 @@ This record stands in for the binary image in the demonstration corpus.`,
   },
   {
     caseNumber: 'FIR/2026/0157',
-    title: 'Offence against a woman — Kalmeshwar (Sensitive)',
+    title: 'Offence against a woman - Kalmeshwar (Sensitive)',
     sections: ['BNS 64', 'BNS 351(3)'],
     station: 'Kalmeshwar PS', district: 'Nagpur Rural',
     registeredDaysAgo: 52, io: 'r.deshmukh', status: 'under_investigation',
@@ -137,7 +137,7 @@ This record stands in for the binary image in the demonstration corpus.`,
     complainantPhone: '9881245530',
     documents: [
       {
-        title: 'First Information Report — FIR/2026/0157',
+        title: 'First Information Report - FIR/2026/0157',
         docClass: 'registration', docType: 'fir', language: 'en', mimeType: 'text/plain', sensitivity: 3,
         body: `FIRST INFORMATION REPORT (fictional demonstration record)
 Police Station: Kalmeshwar PS, District Nagpur Rural
@@ -156,7 +156,7 @@ officer, as required. Medical examination arranged at the district hospital.`,
         title: 'Victim statement (recorded by woman police officer)',
         docClass: 'statement', docType: 'victim_statement', language: 'hi', mimeType: 'text/plain',
         handwritten: true, sensitivity: 3,
-        body: `पीड़िता का बयान (काल्पनिक अभिलेख — पहचान सुरक्षित)
+        body: `पीड़िता का बयान (काल्पनिक अभिलेख - पहचान सुरक्षित)
 यह बयान महिला पुलिस अधिकारी द्वारा दर्ज किया गया है।
 
 पीड़िता ने बताया कि घटना रात लगभग साढ़े नौ बजे हुई। वह विद्यालय के पास वाली सड़क से घर लौट रही थी।
@@ -168,7 +168,7 @@ officer, as required. Medical examination arranged at the district hospital.`,
         title: 'Medical examination report (MLC)',
         docClass: 'forensic', docType: 'medical_report', language: 'en', mimeType: 'text/plain', sensitivity: 3,
         body: `MEDICAL EXAMINATION REPORT (fictional demonstration record)
-District Hospital, Nagpur Rural — Medico-Legal Case
+District Hospital, Nagpur Rural - Medico-Legal Case
 
 Examination conducted with informed consent, in the presence of a woman attendant.
 Findings recorded on the prescribed proforma. Samples collected and sealed for forensic
@@ -188,7 +188,7 @@ Results are recorded in the enclosed annexure. Exhibits resealed and returned.
 Chain of custody for each exhibit is recorded in the accompanying custody ledger.`,
       },
       {
-        title: 'Seizure memo — sealed sample packets',
+        title: 'Seizure memo - sealed sample packets',
         docClass: 'investigation', docType: 'seizure_memo', language: 'en', mimeType: 'text/plain', sensitivity: 3,
         body: `SEIZURE MEMO (fictional demonstration record)
 Articles seized and sealed in the presence of two independent witnesses.
@@ -199,7 +199,7 @@ Custody handed to the malkhana in-charge pending despatch to the laboratory.`,
   },
   {
     caseNumber: 'FIR/2026/0163',
-    title: 'Offence against a child — Hinganghat (POCSO, Sensitive)',
+    title: 'Offence against a child - Hinganghat (POCSO, Sensitive)',
     sections: ['POCSO 8', 'BNS 74'],
     station: 'Hinganghat PS', district: 'Wardha',
     registeredDaysAgo: 41, io: 'r.deshmukh', status: 'under_investigation',
@@ -207,7 +207,7 @@ Custody handed to the malkhana in-charge pending despatch to the laboratory.`,
     complainantPhone: '9765009812',
     documents: [
       {
-        title: 'First Information Report — FIR/2026/0163',
+        title: 'First Information Report - FIR/2026/0163',
         docClass: 'registration', docType: 'fir', language: 'en', mimeType: 'text/plain', sensitivity: 4,
         body: `FIRST INFORMATION REPORT (fictional demonstration record)
 Police Station: Hinganghat PS, District Wardha
@@ -225,7 +225,7 @@ Support person appointment and child welfare committee intimation initiated.`,
         title: 'Statement of the child victim',
         docClass: 'statement', docType: 'victim_statement', language: 'hi', mimeType: 'text/plain',
         handwritten: true, sensitivity: 4,
-        body: `बालिका का बयान (काल्पनिक अभिलेख — पहचान पूर्णतः सुरक्षित)
+        body: `बालिका का बयान (काल्पनिक अभिलेख - पहचान पूर्णतः सुरक्षित)
 यह बयान महिला पुलिस अधिकारी द्वारा, अभिभावक की उपस्थिति में, बालिका के घर पर दर्ज किया गया।
 बालिका ने घटना का विवरण अपने शब्दों में बताया। बयान बालिका को पढ़कर सुनाया गया।
 इस अभिलेख में बालिका अथवा अभिभावक की पहचान संबंधी कोई विवरण दर्ज नहीं है।`,
@@ -242,14 +242,14 @@ Compensation scheme eligibility has been flagged for the district legal services
   },
   {
     caseNumber: 'FIR/2026/0171',
-    title: 'House theft and receiving of stolen property — Hinganghat',
+    title: 'House theft and receiving of stolen property - Hinganghat',
     sections: ['BNS 305', 'BNS 317(2)'],
     station: 'Hinganghat PS', district: 'Wardha',
     registeredDaysAgo: 26, io: 'a.pawar', status: 'under_investigation',
     complainantPhone: '9421778890',
     documents: [
       {
-        title: 'First Information Report — FIR/2026/0171',
+        title: 'First Information Report - FIR/2026/0171',
         docClass: 'registration', docType: 'fir', language: 'en', mimeType: 'text/plain',
         body: `FIRST INFORMATION REPORT (fictional demonstration record)
 Police Station: Hinganghat PS, District Wardha
@@ -270,7 +270,7 @@ Fingerprint lifting attempted on the window frame and the almirah handle.
 Articles listed and sealed in the presence of two independent witnesses.`,
       },
       {
-        title: 'बयान — पड़ोसी का कथन',
+        title: 'बयान - पड़ोसी का कथन',
         docClass: 'statement', docType: 'witness_statement', language: 'hi', mimeType: 'text/plain',
         handwritten: true,
         body: `पड़ोसी का बयान (काल्पनिक अभिलेख)
@@ -290,7 +290,7 @@ Articles listed and sealed in the presence of two independent witnesses.`,
     complainantPhone: '9860112244',
     documents: [
       {
-        title: 'First Information Report — FIR/2026/0180',
+        title: 'First Information Report - FIR/2026/0180',
         docClass: 'registration', docType: 'fir', language: 'en', mimeType: 'text/plain', sensitivity: 3,
         body: `FIRST INFORMATION REPORT (fictional demonstration record)
 Police Station: Kalmeshwar PS, District Nagpur Rural
@@ -314,14 +314,14 @@ No content is reproduced in this summary.`,
   },
   {
     caseNumber: 'FIR/2025/0904',
-    title: 'Cheating and criminal breach of trust — closed, pending appeal',
+    title: 'Cheating and criminal breach of trust - closed, pending appeal',
     sections: ['BNS 318(4)', 'BNS 316(2)'],
     station: 'Kalmeshwar PS', district: 'Nagpur Rural',
     registeredDaysAgo: 400, io: 'a.pawar', status: 'chargesheet_filed',
     complainantPhone: '9096551237',
     documents: [
       {
-        title: 'Charge sheet — FIR/2025/0904',
+        title: 'Charge sheet - FIR/2025/0904',
         docClass: 'prosecution', docType: 'chargesheet', language: 'en', mimeType: 'text/plain',
         body: `FINAL REPORT / CHARGE SHEET (fictional demonstration record)
 Submitted before the Court of the Judicial Magistrate First Class, Nagpur Rural.
@@ -335,7 +335,7 @@ Each annexure carries its own integrity manifest and evidence certificate.`,
         title: 'Bank statement annexure',
         docClass: 'prosecution', docType: 'annexure', language: 'en', mimeType: 'text/plain',
         body: `BANK STATEMENT ANNEXURE (fictional demonstration record)
-Account 50100234567891 — transactions extracted for the relevant period.
+Account 50100234567891 - transactions extracted for the relevant period.
 Certified copy received from the bank through the secure intake portal.`,
       },
     ],

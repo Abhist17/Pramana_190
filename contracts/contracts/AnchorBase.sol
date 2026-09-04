@@ -8,7 +8,7 @@ pragma solidity ^0.8.24;
  * The single rule this codebase exists to enforce: THE CHAIN STORES PROOF, NEVER
  * CONTENT. Nothing here accepts a string, a name, or a blob. Every argument is a
  * fixed-width hash or a code. There is no function that can be made to record a
- * case narrative, and that is deliberate — an on-chain leak cannot be deleted.
+ * case narrative, and that is deliberate - an on-chain leak cannot be deleted.
  *
  * Writers are an explicit allowlist. On a permissioned network the node operators
  * are known institutions, but node access and write authority are different
@@ -70,7 +70,7 @@ abstract contract AnchorBase {
     }
 
     /**
-     * @notice Record a proof. Reverts if this payload hash was already anchored —
+     * @notice Record a proof. Reverts if this payload hash was already anchored -
      * re-anchoring would let a later writer overwrite the recorded time, which is
      * precisely the property the whole design depends on not being possible.
      */

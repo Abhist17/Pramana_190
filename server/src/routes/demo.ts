@@ -14,7 +14,7 @@ import { badRequest } from './helpers.ts';
 
 /**
  * Demonstration endpoints. Clearly separated, clearly labelled, and disabled by
- * setting PRAMANA_DEMO=off — a production deployment must not carry a route that
+ * setting PRAMANA_DEMO=off - a production deployment must not carry a route that
  * deliberately corrupts storage.
  *
  * The tamper demo is the single most persuasive thirty seconds in the pitch, so
@@ -31,7 +31,7 @@ export default async function demoRoutes(app: FastifyInstance) {
   const backupPath = (key: string) => `${objectPath(key)}.demo-backup`;
 
   /**
-   * Flips exactly one bit in the stored object — the digital equivalent of
+   * Flips exactly one bit in the stored object - the digital equivalent of
    * changing a single pixel in a photograph. Then run /verify and watch it fail.
    */
   app.post('/tamper/:documentId', async (request, reply) => {
@@ -82,7 +82,7 @@ export default async function demoRoutes(app: FastifyInstance) {
 
   /**
    * Sends the statutory 90-day progress intimation and records a delivery
-   * receipt — the proof that the obligation was actually discharged.
+   * receipt - the proof that the obligation was actually discharged.
    */
   app.post('/notify/:caseId', async (request, reply) => {
     const { caseId } = request.params as { caseId: string };

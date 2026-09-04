@@ -10,7 +10,7 @@ import "./AnchorBase.sol";
  * The point of recording destruction on chain is the inverse of what people
  * expect from a ledger: it makes LAWFUL DELETION provable. The document's own
  * anchor survives in DocumentRegistry, and a destruction certificate sits beside
- * it here — so years later it stays demonstrable that the record existed and was
+ * it here - so years later it stays demonstrable that the record existed and was
  * destroyed on schedule under authority, rather than having quietly gone missing.
  *
  * A legal hold blocks disposal on chain as well as in the application, so a

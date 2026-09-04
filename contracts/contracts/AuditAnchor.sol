@@ -10,7 +10,7 @@ import "./AnchorBase.sol";
  * This contract is the reason the audit design scales. Sixteen thousand police
  * stations generating millions of reads, prints and downloads a day cannot each
  * become a transaction. Instead every event in a time window is a leaf, only the
- * root is anchored here, and each event keeps a short inclusion proof — so any
+ * root is anchored here, and each event keeps a short inclusion proof - so any
  * single log line can be proved authentic and un-backdated while the chain
  * carries a handful of transactions per station per window.
  *

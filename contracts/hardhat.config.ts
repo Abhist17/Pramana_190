@@ -5,7 +5,7 @@ import '@nomicfoundation/hardhat-toolbox';
  * A local Hardhat node stands in for the permissioned consortium network during
  * development. A real deployment targets a QBFT/IBFT chain whose validators are
  * run by NCRB, the State CID, the judiciary, the forensic laboratories and the
- * prosecution directorate — see docs/ARCHITECTURE.md.
+ * prosecution directorate - see docs/ARCHITECTURE.md.
  */
 const config: HardhatUserConfig = {
   solidity: {

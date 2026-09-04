@@ -28,7 +28,7 @@ if (get('SELECT id FROM users LIMIT 1') && !reset) {
   process.exit(0);
 }
 
-console.log('\nPRAMANA — seeding demonstration corpus');
+console.log('\nPRAMANA - seeding demonstration corpus');
 console.log('  All persons, cases and numbers below are fictional.\n');
 
 // ------------------------------------------------------------------ users --
@@ -84,7 +84,7 @@ for (const seed of CASES) {
       caseId, userIds.get(sho.username)!, 'supervisor', ioId, registeredAt);
   }
   // Co-investigators are normal, and the demo needs one account that can walk the
-  // whole flow — capture, tamper, certificate, search — without switching users
+  // whole flow - capture, tamper, certificate, search - without switching users
   // mid-pitch. SI Deshmukh assists on the general Kalmeshwar case; the deliberate
   // denial in the demo is SI Pawar being refused the sensitive cases, which this
   // does not weaken.
@@ -144,7 +144,7 @@ for (const seed of CASES) {
     });
   }
 
-  // Physical exhibits ride the same ledger — this is the "asset lifecycle" answer.
+  // Physical exhibits ride the same ledger - this is the "asset lifecycle" answer.
   if (assessment.sensitive) {
     run(
       `INSERT INTO exhibits (id, case_id, label, description, tag_type, tag_id, location, seal_status, custodian_id, created_at)
@@ -180,7 +180,7 @@ if (chargesheetCase) {
 
 // ------------------------------------------------------------ audit batch --
 const batch = await sealBatch();
-console.log(`  audit            ${batch?.count ?? 0} events sealed into batch ${batch?.batchId ?? '—'}`);
+console.log(`  audit            ${batch?.count ?? 0} events sealed into batch ${batch?.batchId ?? '-'}`);
 
 const anchors = get<{ n: number }>('SELECT COUNT(*) AS n FROM anchors')!.n;
 const blocks = get<{ n: number }>('SELECT COUNT(*) AS n FROM ledger_blocks')!.n;
@@ -198,7 +198,7 @@ if (reset) {
   console.log('\n⚠  Storage was rebuilt. Restart the API (npm run dev) before using it.');
 }
 
-console.log('\nSign in at http://localhost:5173 — password for every persona is "pramana"');
+console.log('\nSign in at http://localhost:5173 - password for every persona is "pramana"');
 console.log('  r.deshmukh  SI Rohini Deshmukh   woman officer, assigned to the sensitive cases');
 console.log('  a.pawar     SI Amit Pawar        assigned only to the general cases');
 console.log('  m.iyer      DSP Meera Iyer       district supervisor');

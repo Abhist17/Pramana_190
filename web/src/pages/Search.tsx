@@ -76,7 +76,7 @@ export default function Search() {
 
           {result.withheldByPolicy > 0 && (
             <Banner tone="info" title={`${result.withheldByPolicy} matching documents are not shown to you`}>
-              The index respects the policy engine. A document you may not see does not appear — and does
+              The index respects the policy engine. A document you may not see does not appear - and does
               not appear as a "restricted result" either, because the existence of a sealed document can
               itself be sensitive. This query has been written to the audit trail.
             </Banner>
@@ -120,7 +120,7 @@ export default function Search() {
 
       <Card
         title="Cross-case link analysis"
-        sub="The same identifier surfacing in otherwise unconnected cases — NCRB's national pattern-detection mandate"
+        sub="The same identifier surfacing in otherwise unconnected cases - NCRB's national pattern-detection mandate"
         actions={<button className="sm" onClick={() => api.get<{ links: NonNullable<typeof links> }>('/cases/links/cross-case').then((r) => setLinks(r.links))}>
           Run analysis
         </button>}

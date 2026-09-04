@@ -22,7 +22,7 @@ export type SealInput = {
   content: Buffer;
   createdBy: string;
   signerPrivateKey: string;
-  /** device, gps, capture time, attestation — captured on the device, before transit */
+  /** device, gps, capture time, attestation - captured on the device, before transit */
   captureMeta?: Record<string, unknown>;
   sidecarText?: string;
   previousVersionId?: string;
@@ -94,7 +94,7 @@ export async function sealDocument(input: SealInput): Promise<SealResult> {
     run('UPDATE documents SET is_current = 0 WHERE id = ?', input.previousVersionId);
   }
 
-  // 4. Anchor. Hash, codes and counters only — never content, never a name.
+  // 4. Anchor. Hash, codes and counters only - never content, never a name.
   const previousAnchor = input.previousVersionId
     ? get<{ anchor_id: string }>('SELECT anchor_id FROM documents WHERE id = ?', input.previousVersionId)?.anchor_id
     : undefined;
@@ -129,7 +129,7 @@ export async function sealDocument(input: SealInput): Promise<SealResult> {
     signerPrivateKey: input.signerPrivateKey,
   });
 
-  // 6. Derived metadata — separate namespace, machine-generated, never authoritative.
+  // 6. Derived metadata - separate namespace, machine-generated, never authoritative.
   const extraction = extract(input.content, input.mimeType, input.sidecarText);
   let entitiesFound = 0;
   if (extraction.text) {
@@ -254,7 +254,7 @@ export function verifyDocument(documentId: string): VerificationResult {
     // AES-GCM authentication failed: the ciphertext itself was edited.
     status = 'compromised';
     detail =
-      'Authenticated decryption failed — the stored ciphertext was modified. The document cannot be trusted.';
+      'Authenticated decryption failed - the stored ciphertext was modified. The document cannot be trusted.';
   }
 
   if (status === 'compromised' && document.integrity_status !== 'compromised') {

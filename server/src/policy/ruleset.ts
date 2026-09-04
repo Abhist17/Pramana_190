@@ -9,7 +9,7 @@ import type { PolicySet } from './types.ts';
  *
  * The hash of this set is anchored on-chain (AccessPolicyRegistry) with its
  * effective period, which is what lets us prove years later what the access rules
- * actually were on the day of a given access — closing an argument the defence
+ * actually were on the day of a given access - closing an argument the defence
  * would otherwise open.
  */
 export const DEFAULT_POLICY: PolicySet = {
@@ -45,7 +45,7 @@ export const DEFAULT_POLICY: PolicySet = {
       id: 'deny-sensitive-case-without-assignment',
       effect: 'deny',
       description:
-        'In a Women Safety (sensitive) case, rank alone grants nothing. Access requires explicit case assignment — a Superintendent who is not assigned gets a request button, not the file.',
+        'In a Women Safety (sensitive) case, rank alone grants nothing. Access requires explicit case assignment - a Superintendent who is not assigned gets a request button, not the file.',
       basis: 'BNS victim-identity provisions; POCSO; Nipun Saxena directions',
       actions: ['case.read', 'document.read', 'document.download', 'document.print', 'document.export'],
       when: [
@@ -114,7 +114,7 @@ export const DEFAULT_POLICY: PolicySet = {
         'case.read', 'case.write', 'document.read', 'document.download', 'document.create',
         'document.version', 'document.sign', 'document.print', 'document.redact',
         'document.certify', 'document.share', 'custody.transfer',
-        // An officer may read the audit trail OF A CASE THEY ARE ASSIGNED TO —
+        // An officer may read the audit trail OF A CASE THEY ARE ASSIGNED TO -
         // "who else opened my file" is a legitimate and useful question. The
         // unscoped, station-wide trail stays with oversight roles, because this
         // rule only matches when the request names a case they hold.
@@ -186,7 +186,7 @@ export const DEFAULT_POLICY: PolicySet = {
       id: 'permit-ciso-audit',
       effect: 'permit',
       description:
-        'The CISO reads the audit trail — and only the audit trail. Note there is no rule anywhere granting an administrator access to case content.',
+        'The CISO reads the audit trail - and only the audit trail. Note there is no rule anywhere granting an administrator access to case content.',
       basis: 'CERT-In directions; departmental security oversight',
       actions: ['audit.read', 'admin.policy'],
       when: [{ attr: 'subject.role', op: 'in', value: ['ciso', 'admin'] }],
@@ -205,7 +205,7 @@ export const DEFAULT_POLICY: PolicySet = {
       id: 'permit-vault-deanonymise-request',
       effect: 'permit',
       description:
-        'An assigned officer may *request* de-anonymisation. The request itself grants nothing — it needs dual authorisation and a waiting period.',
+        'An assigned officer may *request* de-anonymisation. The request itself grants nothing - it needs dual authorisation and a waiting period.',
       actions: ['vault.deanonymise', 'seal.request'],
       when: [{ attr: 'resource.caseId', op: 'assigned' }],
       obligations: ['dual-authorisation', 'notify-supervisor', 'anchor-event'],

@@ -12,7 +12,7 @@ export function id(prefix: string): string {
 
 /**
  * Stable pseudonym for a protected person. This is what appears in every
- * document, index entry, search result, notification and export — the real name
+ * document, index entry, search result, notification and export - the real name
  * lives only in the Victim Identity Vault.
  */
 export function pseudonym(prefix = 'VICTIM'): string {

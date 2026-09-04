@@ -7,7 +7,7 @@ import { CONSORTIUM_VALIDATORS, config } from '../config.ts';
 import type { AnchorRequest, LedgerDriver } from './types.ts';
 
 /**
- * Embedded consortium ledger — the zero-setup default.
+ * Embedded consortium ledger - the zero-setup default.
  *
  * This is not "a database pretending to be a blockchain". It reproduces the
  * properties we actually rely on: blocks are hash-linked so history cannot be
@@ -19,7 +19,7 @@ import type { AnchorRequest, LedgerDriver } from './types.ts';
  * those validators are independent organisations here only in name, since all
  * five keys live in one process. Run against the permissioned EVM network in
  * contracts/ (PRAMANA_LEDGER=evm) for the genuine article. We say this plainly
- * in the UI too — the ledger status panel labels itself.
+ * in the UI too - the ledger status panel labels itself.
  */
 
 const GENESIS_HASH = '0'.repeat(64);

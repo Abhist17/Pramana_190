@@ -43,7 +43,7 @@ export default function Compliance() {
 
       <Banner tone="info" title="The gap this closes">
         The new criminal statutes created roughly a dozen hard deadlines and several mandatory digital
-        artefacts. Nobody has built the compliance layer for them — police stations are tracking
+        artefacts. Nobody has built the compliance layer for them - police stations are tracking
         two-month statutory deadlines on paper registers.
         <div className="tiny" style={{ marginTop: 6, opacity: .85 }}>
           Every section reference below is marked <code>[VERIFY]</code> until it has been checked against

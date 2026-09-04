@@ -147,7 +147,7 @@ export default async function documentRoutes(app: FastifyInstance) {
     } catch {
       return reply.code(409).send({
         error: 'integrity_failure',
-        message: 'Authenticated decryption failed — the stored object has been modified. Content will not be served.',
+        message: 'Authenticated decryption failed - the stored object has been modified. Content will not be served.',
       });
     }
   });
@@ -211,7 +211,7 @@ export default async function documentRoutes(app: FastifyInstance) {
 
     const result = await handoverCase(
       caseRow.id, request.user!.id, toUser, request.user!.private_key,
-      reason ?? 'Officer transfer — case handover',
+      reason ?? 'Officer transfer - case handover',
     );
     return {
       ...result,
@@ -335,7 +335,7 @@ export default async function documentRoutes(app: FastifyInstance) {
       ...result,
       originalDocumentId: documentId,
       redactedSpans: approved.length,
-      message: 'Redacted rendition sealed as a separate object. Content was removed, not covered — the original is untouched.',
+      message: 'Redacted rendition sealed as a separate object. Content was removed, not covered - the original is untouched.',
     });
   });
 

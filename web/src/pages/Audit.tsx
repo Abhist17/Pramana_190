@@ -49,7 +49,7 @@ export default function Audit() {
 
   /**
    * The station-wide trail is an oversight capability. An investigating officer
-   * is not refused outright — they may read the trail of a case they hold, which
+   * is not refused outright - they may read the trail of a case they hold, which
    * answers the question they actually have ("who else opened my file"). So a
    * denial here offers the scoped view rather than a dead end.
    */
@@ -81,7 +81,7 @@ export default function Audit() {
         <div>
           <h1>Audit trail</h1>
           <div className="muted small">
-            Append-only. Every read, download, print, share, denial <em>and search query</em> — Merkle-batched and anchored.
+            Append-only. Every read, download, print, share, denial <em>and search query</em> - Merkle-batched and anchored.
           </div>
         </div>
         <div className="row">
@@ -158,10 +158,10 @@ export default function Audit() {
                     <td className="small">
                       {event.case_number
                         ? <Link to={`/cases/${event.case_id}`}>{event.case_number}</Link>
-                        : <span className="muted">{event.resource_type ?? '—'}</span>}
+                        : <span className="muted">{event.resource_type ?? '-'}</span>}
                       {event.resource_id && <div className="tiny muted mono">{shortHash(event.resource_id, 12, 4)}</div>}
                     </td>
-                    <td className="tiny">{event.purpose_code ?? <span className="muted">—</span>}</td>
+                    <td className="tiny">{event.purpose_code ?? <span className="muted">-</span>}</td>
                     <td>
                       <Chip tone={event.outcome === 'allow' ? 'ok' : event.outcome === 'deny' ? 'danger' : 'warn'}>
                         {event.outcome}
@@ -234,7 +234,7 @@ function ProofModal({ proof, onClose, toast }: {
       <div className="stack">
         <Banner tone={proof.verified ? 'ok' : 'danger'} title={proof.verified ? 'Proof reconstructs the anchored root' : 'Proof does not verify'}>
           This single log line is provably a member of an anchored batch. It cannot have been inserted,
-          removed or back-dated after the fact — and checking that needs only the {proof.proof.path.length} sibling
+          removed or back-dated after the fact - and checking that needs only the {proof.proof.path.length} sibling
           hashes below, not the other {proof.proof.treeSize - 1} events.
         </Banner>
 
@@ -247,12 +247,12 @@ function ProofModal({ proof, onClose, toast }: {
         </dl>
 
         <div>
-          <div className="tiny muted" style={{ marginBottom: 5 }}>LEAF — this event</div>
+          <div className="tiny muted" style={{ marginBottom: 5 }}>LEAF - this event</div>
           <Hash value={proof.proof.leaf} />
         </div>
 
         <div>
-          <div className="tiny muted" style={{ marginBottom: 5 }}>SIBLING PATH — hashed upward, in order</div>
+          <div className="tiny muted" style={{ marginBottom: 5 }}>SIBLING PATH - hashed upward, in order</div>
           <div className="stack" style={{ gap: 5 }}>
             {proof.proof.path.map((step, index) => (
               <div className="proof-node" key={index}>
@@ -264,7 +264,7 @@ function ProofModal({ proof, onClose, toast }: {
         </div>
 
         <div>
-          <div className="tiny muted" style={{ marginBottom: 5 }}>ROOT — anchored on the ledger</div>
+          <div className="tiny muted" style={{ marginBottom: 5 }}>ROOT - anchored on the ledger</div>
           <Hash value={proof.proof.root} />
         </div>
 
@@ -272,7 +272,7 @@ function ProofModal({ proof, onClose, toast }: {
           <dl className="kv" style={{ gridTemplateColumns: '110px 1fr' }}>
             <dt>Chain</dt><dd className="mono small">{proof.anchor.chain_id}</dd>
             <dt>Transaction</dt><dd className="mono small">{proof.anchor.tx_ref}</dd>
-            <dt>Block</dt><dd className="num">{proof.anchor.block_number ?? '—'}</dd>
+            <dt>Block</dt><dd className="num">{proof.anchor.block_number ?? '-'}</dd>
             <dt>Anchored</dt><dd className="small">{when(proof.anchor.created_at)}</dd>
           </dl>
         )}

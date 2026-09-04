@@ -91,7 +91,7 @@ export function buildProof(leaves: string[], leafIndex: number): InclusionProof 
 }
 
 /**
- * Verifies a proof standalone — no tree, no database, no server. This is the
+ * Verifies a proof standalone - no tree, no database, no server. This is the
  * function a defence counsel's own expert would re-implement to check our claim,
  * which is exactly why it stays this small.
  */

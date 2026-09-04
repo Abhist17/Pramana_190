@@ -13,13 +13,13 @@ import { getObject } from './storage.ts';
  *
  * For material a court has ordered into sealed cover, or for source-protection
  * material, the document's data key is split with Shamir's scheme across
- * designated custodians — typically the case judge, the supervising officer and
+ * designated custodians - typically the case judge, the supervising officer and
  * the head of prosecution. No single individual, the system administrator
  * included, can decrypt it.
  *
  * Unsealing requires m-of-n approvals AND an enforced waiting period during which
  * every custodian is notified, so an illegitimate request is visible before it
- * succeeds. Every unsealing attempt — successful or not — is anchored on-chain.
+ * succeeds. Every unsealing attempt - successful or not - is anchored on-chain.
  *
  * The attacker who steals one credential cannot win. That is the whole point.
  */
@@ -31,7 +31,7 @@ export async function sealUnderThreshold(
   actorId: string,
 ) {
   if (custodianIds.length < threshold) throw new Error('custodian count must be at least the threshold');
-  if (threshold < 2) throw new Error('threshold must be at least 2 — a single custodian defeats the purpose');
+  if (threshold < 2) throw new Error('threshold must be at least 2 - a single custodian defeats the purpose');
 
   const document = get<{ id: string; case_id: string; wrapped_dek: string }>(
     'SELECT id, case_id, wrapped_dek FROM documents WHERE id = ?', documentId,
@@ -91,7 +91,7 @@ export async function requestUnseal(documentId: string, requestedBy: string, rea
     run(
       `INSERT INTO alerts (id, kind, severity, title, detail, actor_id, case_id, created_at)
        VALUES (?, 'seal_unseal_requested', 'high', ?, ?, ?, ?, ?)`,
-      id('ALR'), 'Sealed-cover unseal requested — your approval is required',
+      id('ALR'), 'Sealed-cover unseal requested - your approval is required',
       JSON.stringify({ requestId, documentId, reason, availableAt, custodian: custodian.custodian_id }),
       requestedBy, document?.case_id ?? null, requestedAt,
     );

@@ -9,8 +9,8 @@
 > Judges notice a fabricated citation far more often than teams expect. An unverified marker costs you
 > nothing; a confident wrong section number costs you the room.
 
-The same `[VERIFY]` markers appear in the code — `server/src/services/deadlines.ts`,
-`server/src/services/wsd.ts`, `server/src/routes/cases.ts` — so they cannot be forgotten.
+The same `[VERIFY]` markers appear in the code - `server/src/services/deadlines.ts`,
+`server/src/services/wsd.ts`, `server/src/routes/cases.ts` - so they cannot be forgotten.
 
 ## Why this matters
 
@@ -45,16 +45,16 @@ automated producing it.
 | 17 | 180-day in-country log retention, clock sync, incident reporting | CERT-In Directions, April 2022 | Append-only audit log, NTP-synced timestamps, incident workflow | `services/audit.ts` | ☐ |
 | 18 | Purpose limitation, security safeguards, breach handling | DPDP Act 2023 | Mandatory purpose codes stored with every event; envelope encryption | `policy/ruleset.ts` | ☐ |
 | 19 | Records classified by retention class; destruction recorded | Public Records Act 1993; state police manuals | Retention classes, disposal proposal, **signed certificate of destruction** | `services/retention.ts` | ☐ |
-| 20 | Interoperability across the justice pillars | ICJS mandate | ICJS-shaped integration bus (interfaces only in this build) | — | ☐ |
+| 20 | Interoperability across the justice pillars | ICJS mandate | ICJS-shaped integration bus (interfaces only in this build) | - | ☐ |
 
 ## The insight worth stating out loud
 
 The new procedure code creates roughly a dozen hard deadlines and several new mandatory digital
 artefacts. **Nobody has built the compliance layer for them.** Police stations are tracking two-month
-statutory deadlines on paper registers. That is the gap — not document storage, which is a solved
+statutory deadlines on paper registers. That is the gap - not document storage, which is a solved
 problem everywhere else.
 
-## Existing systems — integrate, do not duplicate
+## Existing systems - integrate, do not duplicate
 
 A judge from NCRB will ask about these. Know them.
 
@@ -71,13 +71,13 @@ A judge from NCRB will ask about these. Know them.
 ## Reading the "expected solution" anomaly
 
 The problem statement's expected-solution field says *"develop a system to monitor and manage police
-assets throughout their lifecycle"* — which does not match its own description. This is almost certainly
+assets throughout their lifecycle"* - which does not match its own description. This is almost certainly
 copy-paste residue from a different statement, and it happens routinely in SIH listings.
 
 Do not ignore it, and do not build an asset tracker. Handle it in one line:
 
 > "We read that as lifecycle management, and we treat every document as a custodial asset. A charge
-> sheet has an owner, a custody chain, a location, a condition, a retention period and a disposal date —
+> sheet has an owner, a custody chain, a location, a condition, a retention period and a disposal date -
 > exactly like a seized weapon in a malkhana. Our custody ledger already extends to physical evidence
 > with QR tags, malkhana location and seal status."
 
@@ -92,8 +92,8 @@ carefully.
 - [ ] The *Nipun Saxena* citation and the specific directions it issued
 - [ ] Current CCTNS police-station coverage figures before quoting "16,000"
 - [ ] Whether eSakshya's current scope overlaps anything claimed here
-- [ ] CERT-In direction details — retention period and reporting window
+- [ ] CERT-In direction details - retention period and reporting window
 - [ ] Court pendency and adjournment statistics before quoting any of them
 - [ ] Existence, licence and citation for every dataset or model named
-- [ ] That at least one team member can explain Merkle batching unprompted — it is the question you are
+- [ ] That at least one team member can explain Merkle batching unprompted - it is the question you are
       most likely to be asked

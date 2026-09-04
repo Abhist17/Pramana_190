@@ -63,7 +63,7 @@ export type AccessRequest = {
 
 export type Decision = {
   effect: 'permit' | 'deny';
-  /** rule that decided it — always populated, including for the default deny */
+  /** rule that decided it - always populated, including for the default deny */
   ruleId: string;
   reason: string;
   obligations: string[];
@@ -72,8 +72,8 @@ export type Decision = {
 };
 
 /**
- * A condition compares one attribute of the request against a literal, or —
- * when `value` starts with `@` — against another attribute of the same request
+ * A condition compares one attribute of the request against a literal, or -
+ * when `value` starts with `@` - against another attribute of the same request
  * (e.g. `subject.clearanceLevel < @resource.sensitivity`).
  */
 export type Condition =

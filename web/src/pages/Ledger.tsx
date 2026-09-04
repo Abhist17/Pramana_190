@@ -40,7 +40,7 @@ export default function Ledger() {
                 ? `Chain integrity BROKEN at block ${status.brokenAtBlock}`
                 : 'The chain stores proof, never content'}>
         Document fingerprints, custody events, audit-batch roots and policy hashes go on chain. Case
-        content, names, addresses and narratives never do — a guard rejects any anchor whose payload
+        content, names, addresses and narratives never do - a guard rejects any anchor whose payload
         looks like personal data, because an on-chain leak cannot be deleted.
         {status.note && <div className="tiny" style={{ marginTop: 7, opacity: .85 }}>{status.note}</div>}
       </Banner>
@@ -100,7 +100,7 @@ export default function Ledger() {
             </Card>
           )}
 
-          <Card title="Contract set" sub="Small on purpose — a judge may ask to read them">
+          <Card title="Contract set" sub="Small on purpose - a judge may ask to read them">
             <div className="stack" style={{ gap: 9 }}>
               {CONTRACTS.map(([name, purpose]) => (
                 <div key={name}>
@@ -116,7 +116,7 @@ export default function Ledger() {
         </div>
       </div>
 
-      <Card title="Recent anchors" sub="Inspect exactly what was written — confirm for yourself that no content is there" tight>
+      <Card title="Recent anchors" sub="Inspect exactly what was written - confirm for yourself that no content is there" tight>
         {status.recentAnchors.length === 0 ? <Empty>No anchors yet.</Empty> : (
           <div className="table-wrap">
             <table>
@@ -127,7 +127,7 @@ export default function Ledger() {
                     <td><Chip tone="a">{anchor.kind}</Chip></td>
                     <td className="mono small">{anchor.contract}</td>
                     <td className="mono tiny" style={{ maxWidth: 480, wordBreak: 'break-all' }}>{anchor.payload}</td>
-                    <td className="num">{anchor.block_number ?? '—'}</td>
+                    <td className="num">{anchor.block_number ?? '-'}</td>
                     <td className="small">{when(anchor.created_at)}</td>
                   </tr>
                 ))}

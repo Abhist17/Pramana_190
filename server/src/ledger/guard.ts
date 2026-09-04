@@ -3,7 +3,7 @@ import type { AnchorRequest } from './types.ts';
 /**
  * The single most important rule in the system: the chain stores proof, never
  * content. This guard runs on every anchor submission and throws rather than
- * letting a mistake become permanent — an on-chain leak cannot be deleted.
+ * letting a mistake become permanent - an on-chain leak cannot be deleted.
  *
  * We allow only hex digests, short codes, numbers and pseudonymous ids, and we
  * reject anything that pattern-matches Indian personal identifiers or free text

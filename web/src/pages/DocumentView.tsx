@@ -78,7 +78,7 @@ export default function DocumentView() {
           <Card title="This document is under threshold custody">
             <p className="small">
               Its data key was split with Shamir's scheme across designated custodians. No single
-              individual — the system administrator included — holds enough to decrypt it. Opening it
+              individual - the system administrator included - holds enough to decrypt it. Opening it
               requires m-of-n approvals and an enforced waiting period during which every custodian is
               notified, so an illegitimate request is visible before it succeeds.
             </p>
@@ -157,7 +157,7 @@ export default function DocumentView() {
           </Card>
 
           {detail.anchor && (
-            <Card title="Ledger anchor" sub="Proof only — no content ever reaches the chain">
+            <Card title="Ledger anchor" sub="Proof only - no content ever reaches the chain">
               <dl className="kv" style={{ gridTemplateColumns: '120px 1fr' }}>
                 <dt>Contract</dt><dd className="mono small">{detail.anchor.contract}</dd>
                 <dt>Chain</dt><dd className="mono small">{detail.anchor.chain_id}</dd>
@@ -205,9 +205,9 @@ function Content({ detail }: { detail: Detail }) {
     <div className="stack">
       {derived && (
         <Banner tone={derived.needsVerification ? 'warn' : 'info'}
-                title={`Machine-extracted text — ${derived.engine}, ${Math.round(derived.confidence * 100)}% confidence`}>
+                title={`Machine-extracted text - ${derived.engine}, ${Math.round(derived.confidence * 100)}% confidence`}>
           This is derived metadata held in a separate namespace. It never touches the sealed original and
-          it is not evidence — it exists so the document can be found.
+          it is not evidence - it exists so the document can be found.
           {derived.needsVerification && ' Confidence is below threshold: this text is queued for human verification.'}
         </Banner>
       )}
@@ -259,8 +259,8 @@ function Integrity({ detail, verification, onVerify, onChanged }: {
           <Banner tone={verification.status === 'verified' ? 'ok' : 'danger'}
                   alarm={verification.status === 'compromised'}
                   title={verification.status === 'verified'
-                    ? 'VERIFIED — the document has not been altered'
-                    : verification.status === 'missing' ? 'OBJECT MISSING' : 'ALTERED — fingerprint mismatch'}>
+                    ? 'VERIFIED - the document has not been altered'
+                    : verification.status === 'missing' ? 'OBJECT MISSING' : 'ALTERED - fingerprint mismatch'}>
             {verification.detail}
           </Banner>
           {verification.actualHash && verification.actualHash !== verification.expectedHash
@@ -270,7 +270,7 @@ function Integrity({ detail, verification, onVerify, onChanged }: {
                 <dt>Anchored fingerprint</dt><dd><Hash value={verification.expectedHash} /></dd>
                 <dt>Recomputed now</dt><dd><Hash value={verification.actualHash} /></dd>
                 <dt>Anchored at</dt><dd>{when(verification.anchoredAt)}</dd>
-                <dt>Ledger transaction</dt><dd className="mono small">{verification.txRef ?? '—'}</dd>
+                <dt>Ledger transaction</dt><dd className="mono small">{verification.txRef ?? '-'}</dd>
                 <dt>Checked</dt><dd>{when(verification.checkedAt)}</dd>
               </dl>
             )}
@@ -287,7 +287,7 @@ function Integrity({ detail, verification, onVerify, onChanged }: {
             <strong>Tamper with this document</strong>
           </div>
           <p className="small muted">
-            Flips exactly one bit in the stored object — the digital equivalent of changing a single pixel
+            Flips exactly one bit in the stored object - the digital equivalent of changing a single pixel
             in a photograph. The anchored fingerprint on the ledger does not change and cannot be changed,
             so the alteration becomes provable. The original is backed up first, so this is safe to rehearse.
           </p>
@@ -310,10 +310,10 @@ function Custody({ detail }: { detail: Detail }) {
           <div className="when">{when(event.created_at)}</div>
           <div className="what">
             <strong>{event.action.toUpperCase()}</strong>
-            {' — '}{event.reason}
+            {' - '}{event.reason}
           </div>
           <div className="tiny muted">
-            {event.from_name ?? 'origin'} → {event.to_name ?? '—'}
+            {event.from_name ?? 'origin'} → {event.to_name ?? '-'}
             {' · item hash '}{shortHash(event.item_hash, 10, 6)}
           </div>
           <div className="row" style={{ gap: 5, marginTop: 4 }}>
@@ -410,7 +410,7 @@ function Certificate({ detail, onChanged }: { detail: Detail; onChanged: () => v
       <Banner tone="info" title="The law now asks for a hash">
         The 2023 evidence statute's prescribed certificate for electronic records requires the hash value
         of the record and the algorithm used, signed by the person in charge of the device and by an
-        expert. PRAMANA fills it in at the moment of production from data captured at seal time — not
+        expert. PRAMANA fills it in at the moment of production from data captured at seal time - not
         reconstructed three years later by an officer who has since retired.
         <div className="tiny" style={{ marginTop: 6, opacity: .85 }}>
           Verify the exact prescribed format and section against indiacode.nic.in before relying on it.
@@ -459,7 +459,7 @@ function Certificate({ detail, onChanged }: { detail: Detail; onChanged: () => v
           </div>
           <div className="tiny muted">
             The same person cannot provide both statutory signatures, and each signature is bound to the
-            certificate's content hash — signing version 7 does not silently approve version 8.
+            certificate's content hash - signing version 7 does not silently approve version 8.
           </div>
         </>
       )}
@@ -487,7 +487,7 @@ function Redaction({ detail, onChanged }: { detail: Detail; onChanged: () => voi
     <div className="stack">
       <Banner tone="info" title="Machine proposes, a person decides">
         Nothing is redacted until a human confirms each span. When you apply, the redacted copy is sealed
-        as a <strong>separate object with its own fingerprint and its own access rules</strong> — the
+        as a <strong>separate object with its own fingerprint and its own access rules</strong> - the
         content is removed, not covered with a black rectangle over recoverable text, and the original
         stays sealed and untouched.
       </Banner>

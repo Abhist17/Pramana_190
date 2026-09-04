@@ -59,8 +59,8 @@ function hasActiveShare(userId: string, resource: Resource): boolean {
  * the audit log records the decision either way (a denial is at least as
  * interesting as a grant), and the behavioural detector re-scores the actor.
  *
- * Denials are deliberately informative to the user about *why* — the rule id and
- * its description — because an access control nobody understands gets worked
+ * Denials are deliberately informative to the user about *why* - the rule id and
+ * its description - because an access control nobody understands gets worked
  * around rather than followed.
  */
 export function authorise(request: FastifyRequest, options: GuardOptions): GuardResult {

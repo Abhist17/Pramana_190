@@ -131,7 +131,7 @@ function ruleMatches(rule: Rule, request: AccessRequest): boolean {
 /**
  * Deny-overrides evaluation with an implicit final deny.
  *
- * Order is: every deny rule first, then permits. Nothing is implicitly allowed —
+ * Order is: every deny rule first, then permits. Nothing is implicitly allowed -
  * there is no "admin sees everything" path and no role that can read a sealed
  * document alone.
  */

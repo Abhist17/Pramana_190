@@ -10,7 +10,7 @@ import { record as audit } from '../services/audit.ts';
 
 /**
  * Required document set by offence category. The completeness checker uses this
- * to tell an officer what the file is still missing — before the prosecutor
+ * to tell an officer what the file is still missing - before the prosecutor
  * discovers it in court.
  */
 const REQUIRED_DOCUMENTS: Record<string, { docType: string; label: string; basis: string }[]> = {
@@ -190,7 +190,7 @@ export default async function caseRoutes(app: FastifyInstance) {
     return { deadlines: deadlinesForCase(row.id) };
   });
 
-  /** Cross-case link analysis — NCRB's national pattern-detection mandate. */
+  /** Cross-case link analysis - NCRB's national pattern-detection mandate. */
   app.get('/links/cross-case', async (request) => {
     const links = crossCaseLinks(2);
     const enriched = links.map((link) => ({

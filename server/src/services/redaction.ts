@@ -4,7 +4,7 @@
  * Two things matter here and both are stated in the pitch:
  *
  * 1. Redaction is TRUE redaction. The redacted rendition has the characters
- *    removed and replaced with a marker — it is not a black rectangle drawn over
+ *    removed and replaced with a marker - it is not a black rectangle drawn over
  *    recoverable text. That failure is real and recurring in government document
  *    release, and this system does not reproduce it.
  * 2. Every proposal requires human confirmation before a redacted rendition is

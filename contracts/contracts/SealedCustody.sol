@@ -7,8 +7,8 @@ import "./AnchorBase.sol";
  * @title SealedCustody
  * @notice Threshold-unseal requests, custodian approvals and waiting-period enforcement.
  *
- * Level-4 material — court-ordered sealed cover, protected witness identities,
- * source information — has its data key split across custodians off chain. This
+ * Level-4 material - court-ordered sealed cover, protected witness identities,
+ * source information - has its data key split across custodians off chain. This
  * contract governs the process of putting it back together:
  *
  *   - an unseal needs m-of-n custodian approvals;

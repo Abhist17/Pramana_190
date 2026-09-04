@@ -10,7 +10,7 @@ import { expand } from './lexicon.ts';
  * HERE: a hashing vectoriser over word tokens and character trigrams, with every
  * token additionally hashed under its lexicon translations so that Hindi and
  * English forms of the same concept land in overlapping dimensions. It is a real
- * vector space with real cosine similarity — just a far weaker one than a trained
+ * vector space with real cosine similarity - just a far weaker one than a trained
  * encoder. We label it as such everywhere it surfaces, and swapping it out is a
  * change to this one file.
  */
@@ -22,7 +22,7 @@ export const MODEL_ID = 'pramana-hashed-ngram-v1 (placeholder for MuRIL/IndicBER
  * Indic scripts write vowels as combining marks (Unicode category M), so a
  * tokeniser that splits on "not a letter or number" shatters मैरून into म/र/न and
  * throws the word away. \p{M} must be part of the token class or every Devanagari
- * document silently indexes as noise — which is exactly the kind of bug that makes
+ * document silently indexes as noise - which is exactly the kind of bug that makes
  * a multilingual demo look like it works right up until a judge types in Hindi.
  */
 export function tokenize(text: string): string[] {
@@ -62,7 +62,7 @@ export function embed(text: string): Float32Array {
     vector[bucket(token)]! += 1;
     // Cross-language: the translation contributes to the same vector, so a Hindi
     // document and its English query overlap even with no shared characters. It
-    // is weighted at parity with the literal token — a translated match is just
+    // is weighted at parity with the literal token - a translated match is just
     // as good a match.
     for (const translation of expand(token)) vector[bucket(translation)]! += 1;
     // Character trigrams give partial credit for morphological variants and OCR

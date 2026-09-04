@@ -1,8 +1,8 @@
 export const shortHash = (hash?: string | null, head = 10, tail = 6) =>
-  !hash ? '—' : hash.length <= head + tail + 1 ? hash : `${hash.slice(0, head)}…${hash.slice(-tail)}`;
+  !hash ? '-' : hash.length <= head + tail + 1 ? hash : `${hash.slice(0, head)}…${hash.slice(-tail)}`;
 
 export function when(iso?: string | null): string {
-  if (!iso) return '—';
+  if (!iso) return '-';
   const date = new Date(iso);
   return date.toLocaleString('en-IN', {
     day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false,
@@ -10,7 +10,7 @@ export function when(iso?: string | null): string {
 }
 
 export function ago(iso?: string | null): string {
-  if (!iso) return '—';
+  if (!iso) return '-';
   const seconds = (Date.now() - new Date(iso).getTime()) / 1000;
   const units: [number, string][] = [[86400, 'd'], [3600, 'h'], [60, 'm']];
   for (const [size, label] of units) if (Math.abs(seconds) >= size) return `${Math.round(seconds / size)}${label} ago`;

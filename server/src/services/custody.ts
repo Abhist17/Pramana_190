@@ -8,7 +8,7 @@ import { anchor } from '../ledger/index.ts';
  *
  * Each event references the previous one, so the ledger is a genuine chain
  * rather than a pile of rows: a gap is structurally visible because the next
- * event's `previous_event` would point at nothing. Both parties sign — the
+ * event's `previous_event` would point at nothing. Both parties sign - the
  * releasing officer at handover, the receiving officer on acknowledgement.
  *
  * The physical-exhibit path is the same table. That is how PRAMANA answers the
@@ -109,7 +109,7 @@ export function custodyChain(subjectType: 'document' | 'exhibit', subjectId: str
 /**
  * Transfer of an entire case file on officer transfer. Generates a manifest of
  * exactly what the file contained at that moment, hashed and signed by both
- * officers — which alone solves the "two loose sheets went missing" problem.
+ * officers - which alone solves the "two loose sheets went missing" problem.
  */
 export async function handoverCase(caseId: string, fromUser: string, toUser: string, privateKey: string, reason: string) {
   const documents = all<{ id: string; hash_value: string; title: string }>(
