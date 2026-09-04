@@ -296,5 +296,6 @@ run in the vernacular, and never require the same fact typed twice.
 | How it fits together, and every demo-vs-production gap | `ARCHITECTURE.md` |
 | Statutory obligation to feature, with verification status | `LEGAL_MAPPING.md` |
 | Who we designed against | `THREAT_MODEL.md` |
+| What is still wrong with it, ranked | `LOOPHOLES.md` |
 | The original full solution document | `SOLUTION.md` |
 | Who owns which directory | `../CONTRIBUTING.md` |

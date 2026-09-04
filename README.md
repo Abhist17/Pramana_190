@@ -169,6 +169,7 @@ builds a proof in TypeScript and checks it in Solidity, which is the cross-check
 | [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md) | The five-minute run, with the exact clicks |
 | [docs/LEGAL_MAPPING.md](docs/LEGAL_MAPPING.md) | Statutory obligation → feature, with verification status |
 | [docs/THREAT_MODEL.md](docs/THREAT_MODEL.md) | Who this is designed against, starting with the insider |
+| [docs/LOOPHOLES.md](docs/LOOPHOLES.md) | An adversarial read of our own code: every hole found, verified, and ranked |
 | [docs/SOLUTION.md](docs/SOLUTION.md) | The full solution document this was built from |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Working agreements, and who owns what |
 
