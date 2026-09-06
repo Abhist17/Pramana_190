@@ -38,3 +38,13 @@ export function deadlineTone(percentElapsed: number): 'ok' | 'warn' | 'danger' {
   if (percentElapsed >= 0.8) return 'warn';
   return 'ok';
 }
+
+/**
+ * The API clamps percentElapsed at 1.5, so every breached deadline reports the
+ * same "150%" regardless of how far past due it actually is. Printing that
+ * number reads as a measurement when it is really a ceiling - and the Due column
+ * already gives the honest figure in days. So past 100% we name the state
+ * instead of restating a capped ratio.
+ */
+export const elapsedLabel = (percentElapsed: number) =>
+  percentElapsed >= 1 ? 'Breached' : `${Math.round(percentElapsed * 100)}% elapsed`;

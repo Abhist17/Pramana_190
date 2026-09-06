@@ -45,7 +45,8 @@ export function Emblem({ size = 44 }: { size?: number }) {
 
 /** Top utility strip: identity on the left, accessibility controls on the right. */
 export function TopStrip() {
-  const { t, locale, toggleLocale, fontScale, stepFont, highContrast, setHighContrast } = useGov();
+  const { t, locale, toggleLocale, fontScale, stepFont, highContrast, setHighContrast,
+          theme, toggleTheme } = useGov();
   return (
     <div className="gov-strip">
       <div className="gov-strip-inner">
@@ -72,6 +73,12 @@ export function TopStrip() {
                   title={t('highContrast')} onClick={() => setHighContrast(!highContrast)}>
             <span className="contrast-glyph" aria-hidden="true" />
             {t('highContrast')}
+          </button>
+
+          <button type="button" className="strip-btn wide" aria-pressed={theme === 'dark'}
+                  title={theme === 'dark' ? t('lightMode') : t('darkMode')} onClick={toggleTheme}>
+            <span className="theme-glyph" aria-hidden="true">{theme === 'dark' ? '\u25D1' : '\u25D0'}</span>
+            {theme === 'dark' ? t('lightMode') : t('darkMode')}
           </button>
 
           <button type="button" className="strip-btn wide lang" onClick={toggleLocale}
@@ -191,7 +198,7 @@ export function GovFooter() {
           <p className="footer-stamp">
             <span>{t('gigwNote')}</span>
             <span className="sep" aria-hidden="true">·</span>
-            <span>{t('lastUpdated')}: 05 September 2026</span>
+            <span>{t('lastUpdated')}: {__BUILD_DATE__}</span>
           </p>
         </div>
       </div>

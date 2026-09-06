@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { api } from '../lib/api.ts';
 import { useApp, denialMessage } from '../lib/app.tsx';
 import { Card, Chip, Banner, Loading, Meter, Empty, Tabs, Modal } from '../components/ui.tsx';
-import { when, sensitivity, bytes, deadlineTone, shortHash } from '../lib/format.ts';
+import { when, sensitivity, bytes, deadlineTone, elapsedLabel, shortHash } from '../lib/format.ts';
 
 type Doc = {
   id: string; title: string; docClass: string; docType: string; sensitivity: number;
@@ -274,7 +274,7 @@ function DeadlineList({ deadlines, onDone, toast }: {
               <div style={{ marginTop: 10 }}>
                 <Meter value={deadline.percentElapsed} tone={tone} />
                 <div className="row tiny muted" style={{ marginTop: 5, justifyContent: 'space-between' }}>
-                  <span>{Math.round(deadline.percentElapsed * 100)}% elapsed</span>
+                  <span>{elapsedLabel(deadline.percentElapsed)}</span>
                   <span>
                     due {when(deadline.dueAt)}
                     {deadline.daysRemaining < 0

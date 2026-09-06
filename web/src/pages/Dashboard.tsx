@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { api } from '../lib/api.ts';
 import { useApp } from '../lib/app.tsx';
 import { Card, Stat, Chip, Banner, Loading, Meter, Empty } from '../components/ui.tsx';
-import { ago, deadlineTone } from '../lib/format.ts';
+import { ago, deadlineTone, elapsedLabel } from '../lib/format.ts';
 
 type Dash = {
   cases: number; sensitiveCases: number; documents: number; anchors: number;
@@ -80,7 +80,7 @@ export default function Dashboard() {
                         <td>
                           <Meter value={deadline.percentElapsed} tone={tone} />
                           <div className="tiny muted" style={{ marginTop: 3 }}>
-                            {Math.round(deadline.percentElapsed * 100)}%
+                            {elapsedLabel(deadline.percentElapsed)}
                           </div>
                         </td>
                         <td className="num small">

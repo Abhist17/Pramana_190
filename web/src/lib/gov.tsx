@@ -13,6 +13,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 
 export type Locale = 'en' | 'hi';
 export type FontScale = 'sm' | 'md' | 'lg';
+export type Theme = 'light' | 'dark';
 
 type GovState = {
   locale: Locale;
@@ -23,6 +24,8 @@ type GovState = {
   stepFont: (direction: -1 | 0 | 1) => void;
   highContrast: boolean;
   setHighContrast: (next: boolean) => void;
+  theme: Theme;
+  toggleTheme: () => void;
   t: (key: StringKey) => string;
   /** Picks the right member of an `{ en, hi }` pair for the active locale. */
   pick: (pair: { en: string; hi: string }) => string;
@@ -51,6 +54,12 @@ export function GovProvider({ children }: { children: ReactNode }) {
   const [highContrast, setHighContrastState] = useState(
     () => localStorage.getItem('pramana.contrast') === 'high',
   );
+  // Light unless the visitor has explicitly chosen otherwise. We deliberately do
+  // not consult prefers-color-scheme: a departmental portal should look the same
+  // to every visitor until they ask for something else.
+  const [theme, setThemeState] = useState<Theme>(
+    () => (localStorage.getItem('pramana.theme') as Theme | null) ?? 'light',
+  );
 
   // The root element carries the preferences so plain CSS can respond to them,
   // which keeps every page and every third-party-free component in step.
@@ -59,7 +68,10 @@ export function GovProvider({ children }: { children: ReactNode }) {
     root.lang = locale;
     root.dataset.fontScale = fontScale;
     root.dataset.contrast = highContrast ? 'high' : 'normal';
-  }, [locale, fontScale, highContrast]);
+    root.dataset.theme = theme;
+    // Keeps form controls, scrollbars and the browser's own UI in step.
+    root.style.colorScheme = theme;
+  }, [locale, fontScale, highContrast, theme]);
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
@@ -74,6 +86,14 @@ export function GovProvider({ children }: { children: ReactNode }) {
   const setHighContrast = useCallback((next: boolean) => {
     setHighContrastState(next);
     localStorage.setItem('pramana.contrast', next ? 'high' : 'normal');
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setThemeState((current) => {
+      const next: Theme = current === 'light' ? 'dark' : 'light';
+      localStorage.setItem('pramana.theme', next);
+      return next;
+    });
   }, []);
 
   const stepFont = useCallback((direction: -1 | 0 | 1) => {
@@ -97,9 +117,10 @@ export function GovProvider({ children }: { children: ReactNode }) {
   const value = useMemo<GovState>(
     () => ({
       locale, setLocale, toggleLocale, fontScale, setFontScale, stepFont,
-      highContrast, setHighContrast, t, pick,
+      highContrast, setHighContrast, theme, toggleTheme, t, pick,
     }),
-    [locale, setLocale, toggleLocale, fontScale, setFontScale, stepFont, highContrast, setHighContrast, t, pick],
+    [locale, setLocale, toggleLocale, fontScale, setFontScale, stepFont, highContrast, setHighContrast,
+     theme, toggleTheme, t, pick],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
@@ -127,6 +148,8 @@ const STRINGS = {
   normalText:       { en: 'Normal text size',                    hi: 'सामान्य पाठ आकार' },
   increaseText:     { en: 'Increase text size',                  hi: 'पाठ का आकार बढ़ाएँ' },
   highContrast:     { en: 'High contrast',                       hi: 'उच्च कंट्रास्ट' },
+  darkMode:         { en: 'Dark mode',                           hi: 'गहरा रूप' },
+  lightMode:        { en: 'Light mode',                          hi: 'हल्का रूप' },
   language:         { en: 'Language',                            hi: 'भाषा' },
 
   navInvestigation: { en: 'Investigation',                       hi: 'अन्वेषण' },

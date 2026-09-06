@@ -79,18 +79,24 @@ html[data-font-scale="sm"] { --fs: .92; }
 html[data-font-scale="md"] { --fs: 1; }
 html[data-font-scale="lg"] { --fs: 1.16; }
 
-/* ------------------------------------------------------------ dark scheme -- */
-@media (prefers-color-scheme: dark) {
-  html:not([data-contrast="high"]) {
-    --ink: #e6edf4; --ink-2: #c9d6e2; --muted: #93a6b8; --faint: #6f8598;
-    --line: #1d3348; --line-2: #2d4b66; --bg: #08141f; --surface: #0e1f2e; --surface-2: #12293c;
-    --navy: #071825; --navy-2: #0d2438; --navy-3: #1d4f78; --navy-fg: #a8cdf2;
-    --accent: #6ba8e8; --accent-ink: #9cc6f2; --accent-bg: #10304d;
-    --ok: #4bbd85; --ok-bg: #06281a; --warn: #e0a33c; --warn-bg: #2a1d05;
-    --danger: #f08a86; --danger-bg: #2c1010; --seal: #b394e8; --seal-bg: #1c1533;
-    --shadow: 0 1px 2px rgba(0,0,0,.5); --shadow-lg: 0 12px 34px rgba(0,0,0,.6);
-    --focus: 3px solid #ffb060;
-  }
+/* ------------------------------------------------------------ dark scheme -- *
+ * OPT-IN ONLY, and that is a deliberate departure from the usual web default.
+ * Government of India portals present light: white content on a navy masthead.
+ * Following prefers-color-scheme would mean a visitor whose laptop is in dark
+ * mode never sees the intended departmental presentation at all - the console
+ * would read as a private security product rather than a government service.
+ * So light is unconditional, and dark is a preference the visitor selects in
+ * the accessibility strip, alongside text size and high contrast.
+ */
+html[data-theme="dark"]:not([data-contrast="high"]) {
+  --ink: #e6edf4; --ink-2: #c9d6e2; --muted: #93a6b8; --faint: #6f8598;
+  --line: #1d3348; --line-2: #2d4b66; --bg: #08141f; --surface: #0e1f2e; --surface-2: #12293c;
+  --navy: #071825; --navy-2: #0d2438; --navy-3: #1d4f78; --navy-fg: #a8cdf2;
+  --accent: #6ba8e8; --accent-ink: #9cc6f2; --accent-bg: #10304d;
+  --ok: #4bbd85; --ok-bg: #06281a; --warn: #e0a33c; --warn-bg: #2a1d05;
+  --danger: #f08a86; --danger-bg: #2c1010; --seal: #b394e8; --seal-bg: #1c1533;
+  --shadow: 0 1px 2px rgba(0,0,0,.5); --shadow-lg: 0 12px 34px rgba(0,0,0,.6);
+  --focus: 3px solid #ffb060;
 }
 
 /* ----------------------------------------------------- high contrast mode -- */
@@ -176,6 +182,7 @@ html[data-contrast="high"] .gov-strip { background: #000; border-bottom: 2px sol
   width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid currentColor;
   background: linear-gradient(90deg, currentColor 50%, transparent 50%);
 }
+.theme-glyph { font-size: 1.05em; line-height: 1; }
 
 /* -- masthead ------------------------------------------------------------ */
 .gov-masthead { background: var(--surface); }
