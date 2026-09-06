@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { all, get } from '../db/index.ts';
 import { authenticate, authorise, denyResponse } from '../guard.ts';
+import { record as audit } from '../services/audit.ts';
 import { loadCase, caseResource, badRequest } from './helpers.ts';
 import {
   requestDeanonymisation, approveDeanonymisation, revealIdentity, pendingVaultRequests,
@@ -13,8 +14,25 @@ import { deadlineBoard } from '../services/deadlines.ts';
 export default async function wsdRoutes(app: FastifyInstance) {
   app.addHook('preHandler', async (request, reply) => { authenticate(request, reply); });
 
-  /** Women Safety Division oversight console. */
-  app.get('/overview', async () => {
+  /**
+   * Women Safety Division oversight console.
+   *
+   * This aggregates every sensitive-mode case nationally plus every pending
+   * vault de-anonymisation request - the exact material the sensitive-case and
+   * vault rules elsewhere in this file exist to restrict. It is not scoped to a
+   * single case, so it cannot go through authorise() against one resource; it
+   * gets the same DSP-or-above oversight tier used for de-escalating a
+   * sensitive case and approving a vault reveal instead of being open to any
+   * authenticated officer.
+   */
+  app.get('/overview', async (request, reply) => {
+    if (request.user!.rank_level < 5) {
+      audit({
+        actorId: request.user!.id, actorLabel: request.user!.full_name, action: 'wsd.overview',
+        outcome: 'deny', detail: { reason: 'requires DSP rank or above', rankLevel: request.user!.rank_level },
+      });
+      return reply.code(403).send(badRequest('the Women Safety Division oversight console requires DSP rank or above'));
+    }
     const cases = all<{ id: string; case_number: string; title: string; district: string; station: string; offence_category: string; sensitivity: number; victim_pseudonym: string | null; registered_at: string }>(
       `SELECT id, case_number, title, district, station, offence_category, sensitivity, victim_pseudonym, registered_at
        FROM cases WHERE sensitive_mode = 1 ORDER BY registered_at DESC`,
@@ -146,9 +164,23 @@ export default async function wsdRoutes(app: FastifyInstance) {
     return sealStatus(documentId) ?? { sealed: false };
   });
 
+  /**
+   * Applying a threshold seal is irreversible from the application's side: the
+   * single-party key is destroyed the moment this runs, so it needs the same
+   * DSP-or-above gate as the other privileged WSD operations rather than being
+   * callable by anyone who can reach the route.
+   */
   app.post('/sealed/:documentId/seal', async (request, reply) => {
     const { documentId } = request.params as { documentId: string };
     const { custodians, threshold } = (request.body ?? {}) as { custodians?: string[]; threshold?: number };
+    if (request.user!.rank_level < 5) {
+      audit({
+        actorId: request.user!.id, actorLabel: request.user!.full_name, action: 'seal.apply',
+        outcome: 'deny', resourceType: 'document', resourceId: documentId,
+        detail: { reason: 'requires DSP rank or above', rankLevel: request.user!.rank_level },
+      });
+      return reply.code(403).send(badRequest('applying a threshold seal requires DSP rank or above'));
+    }
     if (!Array.isArray(custodians) || custodians.length < 2) {
       return reply.code(400).send(badRequest('at least two custodians are required'));
     }

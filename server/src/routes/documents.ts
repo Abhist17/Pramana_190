@@ -236,12 +236,42 @@ export default async function documentRoutes(app: FastifyInstance) {
     return reply.code(201).send(result);
   });
 
+  /**
+   * A certificate carries the same document content and case context as the
+   * document itself (BSA production statement, hash, custody chain) - so
+   * reading, signing or downloading one is authorised exactly like reading the
+   * underlying document, never left open just because the ID is a certificate
+   * ID rather than a document ID.
+   */
+  function authoriseCertificateAccess(
+    request: import('fastify').FastifyRequest,
+    reply: import('fastify').FastifyReply,
+    documentId: string,
+    action: 'document.certify' | 'document.read',
+  ): boolean {
+    const document = loadDocument(documentId);
+    if (!document) return false;
+    const caseRow = loadCase(document.case_id)!;
+    const check = authorise(request, {
+      action, resource: documentResource(document, caseRow), purposeCode: 'COURT_PRODUCTION',
+    });
+    if (!check.allowed) {
+      denyResponse(reply, check.decision);
+      return false;
+    }
+    return true;
+  }
+
   app.post('/certificates/:certificateId/sign', async (request, reply) => {
     const { certificateId } = request.params as { certificateId: string };
     const { role } = (request.body ?? {}) as { role?: 'device_custodian' | 'expert' };
     if (role !== 'device_custodian' && role !== 'expert') {
       return reply.code(400).send(badRequest('role must be device_custodian or expert'));
     }
+    const certRow = get<{ document_id: string }>('SELECT document_id FROM certificates WHERE id = ?', certificateId);
+    if (!certRow) return reply.code(404).send({ error: 'not_found' });
+    if (!authoriseCertificateAccess(request, reply, certRow.document_id, 'document.certify')) return reply;
+
     try {
       return await signCertificate(certificateId, role, request.user!.id);
     } catch (error) {
@@ -255,6 +285,7 @@ export default async function documentRoutes(app: FastifyInstance) {
       'SELECT payload, status, document_id, case_id, created_at FROM certificates WHERE id = ?', certificateId,
     );
     if (!row) return reply.code(404).send({ error: 'not_found' });
+    if (!authoriseCertificateAccess(request, reply, row.document_id, 'document.read')) return reply;
     return {
       certificateId, status: row.status, documentId: row.document_id, caseId: row.case_id,
       createdAt: row.created_at, payload: json(row.payload, {}),
@@ -264,6 +295,9 @@ export default async function documentRoutes(app: FastifyInstance) {
 
   app.get('/certificates/:certificateId/pdf', async (request, reply) => {
     const { certificateId } = request.params as { certificateId: string };
+    const certRow = get<{ document_id: string }>('SELECT document_id FROM certificates WHERE id = ?', certificateId);
+    if (!certRow) return reply.code(404).send({ error: 'not_found' });
+    if (!authoriseCertificateAccess(request, reply, certRow.document_id, 'document.read')) return reply;
     const path = certificatePath(certificateId);
     if (!path) return reply.code(404).send({ error: 'not_found' });
     const { readFileSync } = await import('node:fs');

@@ -41,7 +41,37 @@ const ABI = [
     inputs: [{ name: 'payloadHash', type: 'bytes32' }],
     outputs: [{ name: '', type: 'uint256' }],
   },
+  // The two specialised functions the rest of the system actually depends on
+  // seeing populated: AuditAnchor.verifyInclusion reads `batches[root]`, and
+  // the version registry reads `versionOf[documentHash]`. Neither is reachable
+  // through the generic `anchor()` above - only through these.
+  {
+    type: 'function',
+    name: 'anchorBatch',
+    stateMutability: 'nonpayable',
+    inputs: [
+      { name: 'root', type: 'bytes32' },
+      { name: 'scope', type: 'bytes32' },
+      { name: 'eventCount', type: 'uint32' },
+    ],
+    outputs: [],
+  },
+  {
+    type: 'function',
+    name: 'anchorDocument',
+    stateMutability: 'nonpayable',
+    inputs: [
+      { name: 'documentHash', type: 'bytes32' },
+      { name: 'algorithm', type: 'bytes32' },
+      { name: 'docTypeCode', type: 'bytes32' },
+      { name: 'version', type: 'uint32' },
+      { name: 'previousHash', type: 'bytes32' },
+    ],
+    outputs: [],
+  },
 ] as const;
+
+const ZERO_BYTES32 = `0x${'0'.repeat(64)}` as const;
 
 export class EvmLedger implements LedgerDriver {
   readonly name = 'evm' as const;
@@ -88,15 +118,50 @@ export class EvmLedger implements LedgerDriver {
   async submit(request: AnchorRequest) {
     await this.#connect();
     const payloadHash = hashObject(request.payload);
-    const toBytes32 = (hex: string) => `0x${hex.padStart(64, '0').slice(-64)}` as `0x${string}`;
-    const kindBytes = `0x${Buffer.from(request.kind).toString('hex').padEnd(64, '0')}` as `0x${string}`;
-    const subjectBytes = `0x${Buffer.from(request.subjectId).toString('hex').slice(0, 64).padEnd(64, '0')}` as `0x${string}`;
+    // A hash-shaped value (a hex digest already computed off-chain) is packed
+    // by parsing it as hex; a code-shaped value (a short semantic string like
+    // a doc-type or scope code) is packed as raw UTF-8 bytes - the same scheme
+    // this driver already used for `kind`/`subjectId` below.
+    const toBytes32Hex = (hex: string) => `0x${hex.padStart(64, '0').slice(-64)}` as `0x${string}`;
+    const toBytes32Utf8 = (text: string) =>
+      `0x${Buffer.from(text).toString('hex').slice(0, 64).padEnd(64, '0')}` as `0x${string}`;
+    const kindBytes = toBytes32Utf8(request.kind);
+    const subjectBytes = toBytes32Utf8(request.subjectId);
+
+    // Every anchor writes to the generic AnchorBase ledger by default. The two
+    // methods below additionally populate the specialised contract state that
+    // AuditAnchor.verifyInclusion and DocumentRegistry.versionOf actually read -
+    // without this, submit() always called the generic function regardless of
+    // request.method, so that specialised state was never written on chain.
+    let functionName = 'anchor';
+    let args: readonly unknown[] = [kindBytes, subjectBytes, toBytes32Hex(payloadHash)];
+
+    if (request.contract === 'AuditAnchor' && request.method === 'anchorBatch') {
+      functionName = 'anchorBatch';
+      args = [
+        toBytes32Hex(String(request.payload.merkleRoot)),
+        toBytes32Utf8(String(request.payload.scope ?? 'national')),
+        Number(request.payload.eventCount ?? 0),
+      ];
+    } else if (request.contract === 'DocumentRegistry' && request.method === 'anchorDocument') {
+      functionName = 'anchorDocument';
+      args = [
+        toBytes32Hex(String(request.payload.documentHash)),
+        toBytes32Utf8(String(request.payload.algorithm ?? '')),
+        toBytes32Utf8(String(request.payload.docTypeCode ?? '')),
+        Number(request.payload.version ?? 1),
+        // Version-chain linking by prior document hash isn't tracked off-chain
+        // at this call site today, so every version anchors as its own root
+        // rather than reverting on a chain the app cannot supply.
+        ZERO_BYTES32,
+      ];
+    }
 
     const txRef: string = await this.#wallet.writeContract({
       address: this.#address(request.contract),
       abi: ABI,
-      functionName: 'anchor',
-      args: [kindBytes, subjectBytes, toBytes32(payloadHash)],
+      functionName,
+      args,
     });
     const receipt = await this.#client.waitForTransactionReceipt({ hash: txRef });
 

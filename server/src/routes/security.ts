@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { all, get, json } from '../db/index.ts';
 import { authenticate, authorise, denyResponse } from '../guard.ts';
-import { proofForEvent, sealBatch } from '../services/audit.ts';
+import { proofForEvent, sealBatch, record as audit } from '../services/audit.ts';
 import { openAlerts, acknowledgeAlert, actorBaseline } from '../services/anomaly.ts';
 import { activePolicy, evaluate, explain, installPolicy, loadSubjectAssignments, type Action, type PolicySet } from '../policy/engine.ts';
 import { ledger } from '../ledger/index.ts';
@@ -178,9 +178,24 @@ export default async function securityRoutes(app: FastifyInstance) {
     disposals: all('SELECT * FROM disposal_records ORDER BY created_at DESC LIMIT 25'),
   }));
 
+  /**
+   * A legal hold is what stands between a court order and a document getting
+   * lawfully-but-wrongly destroyed on schedule - lifting one has to clear the
+   * same DSP-or-above bar as the other privileged retention/WSD operations,
+   * not be reachable by any authenticated officer.
+   */
   app.post('/retention/hold', async (request, reply) => {
     const { caseId, on, reason } = (request.body ?? {}) as { caseId?: string; on?: boolean; reason?: string };
     if (!caseId) return reply.code(400).send(badRequest('caseId is required'));
+    if (request.user!.rank_level < 5) {
+      audit({
+        actorId: request.user!.id, actorLabel: request.user!.full_name,
+        action: on !== false ? 'retention.hold_applied' : 'retention.hold_lifted', outcome: 'deny',
+        resourceType: 'case', resourceId: caseId, caseId,
+        detail: { reason: 'requires DSP rank or above', rankLevel: request.user!.rank_level },
+      });
+      return reply.code(403).send(badRequest('changing a legal hold requires DSP rank or above'));
+    }
     return setLegalHold(caseId, on !== false, request.user!.id, reason ?? 'Legal hold applied');
   });
 

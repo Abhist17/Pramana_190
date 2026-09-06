@@ -190,8 +190,22 @@ export default async function caseRoutes(app: FastifyInstance) {
     return { deadlines: deadlinesForCase(row.id) };
   });
 
-  /** Cross-case link analysis - NCRB's national pattern-detection mandate. */
-  app.get('/links/cross-case', async (request) => {
+  /**
+   * Cross-case link analysis - NCRB's national pattern-detection mandate.
+   *
+   * This correlates entities across every case in the system, sensitive ones
+   * included, so it is scoped to the same DSP-or-above oversight tier as
+   * de-escalating a sensitive case or approving a vault reveal, not to whichever
+   * officer happens to be signed in.
+   */
+  app.get('/links/cross-case', async (request, reply) => {
+    if (request.user!.rank_level < 5) {
+      audit({
+        actorId: request.user!.id, actorLabel: request.user!.full_name, action: 'search.cross_case_links',
+        outcome: 'deny', detail: { reason: 'requires DSP rank or above', rankLevel: request.user!.rank_level },
+      });
+      return reply.code(403).send(badRequest('cross-case link analysis requires DSP rank or above'));
+    }
     const links = crossCaseLinks(2);
     const enriched = links.map((link) => ({
       type: link.type,
