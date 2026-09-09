@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api.ts';
+import { denialMessage } from '../lib/app.tsx';
 import { Card, Chip, Loading, Empty, Banner } from '../components/ui.tsx';
 import { when, sensitivity } from '../lib/format.ts';
 
@@ -14,8 +15,14 @@ export default function Cases() {
   const [data, setData] = useState<{ cases: CaseRow[]; total: number; visible: number } | null>(null);
   const [query, setQuery] = useState('');
 
-  useEffect(() => { api.get<typeof data>('/cases').then(setData).catch(() => undefined); }, []);
-  if (!data) return <Loading what="Loading cases" />;
+  const [error, setError] = useState<string | null>(null);
+  const load = useCallback(() => {
+    setError(null);
+    api.get<{ cases: CaseRow[]; total: number; visible: number }>('/cases').then(setData)
+      .catch((caught) => setError(denialMessage(caught)?.body || String(caught)));
+  }, []);
+  useEffect(load, [load]);
+  if (!data) return <Loading what="Loading cases" error={error} onRetry={load} />;
 
   const hidden = data.total - data.visible;
   const rows = data.cases.filter((row) =>

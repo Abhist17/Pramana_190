@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api.ts';
-import { useApp } from '../lib/app.tsx';
+import { useApp, denialMessage } from '../lib/app.tsx';
 import { Card, Chip, Banner, Loading, Empty, Meter, Stat } from '../components/ui.tsx';
 import { when, deadlineTone } from '../lib/format.ts';
 
@@ -23,14 +23,17 @@ export default function Compliance() {
   const { toast } = useApp();
   const [board, setBoard] = useState<Board | null>(null);
   const [retention, setRetention] = useState<Retention | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(() => {
-    api.get<Board>('/security/deadlines/board').then(setBoard).catch(() => undefined);
+    setError(null);
+    api.get<Board>('/security/deadlines/board').then(setBoard)
+      .catch((caught) => setError(denialMessage(caught)?.body || String(caught)));
     api.get<Retention>('/security/retention').then(setRetention).catch(() => undefined);
   }, []);
   useEffect(load, [load]);
 
-  if (!board) return <Loading what="Computing statutory deadlines" />;
+  if (!board) return <Loading what="Computing statutory deadlines" error={error} onRetry={load} />;
 
   return (
     <div className="stack">

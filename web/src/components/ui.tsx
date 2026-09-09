@@ -113,8 +113,26 @@ export function Hash({ value, big }: { value?: string | null; big?: boolean }) {
   );
 }
 
-export function Loading({ what = 'Loading' }: { what?: string }) {
-  return <div className="empty">{what}…</div>;
+/**
+ * A screen that is still waiting, or has given up.
+ *
+ * The `error` arm matters more than the spinner. Every page here gates its
+ * render on `if (!data) return <Loading />`, so a load that fails and is
+ * swallowed leaves the officer watching an ellipsis for ever - which is exactly
+ * what a denied request used to look like. A refusal is information; show it.
+ */
+export function Loading({ what = 'Loading', error, onRetry }: {
+  what?: string; error?: string | null; onRetry?: () => void;
+}) {
+  if (!error) return <div className="empty">{what}…</div>;
+  return (
+    <Banner tone="danger" title={`${what} failed`}>
+      <div>{error}</div>
+      {onRetry && (
+        <button className="sm" style={{ marginTop: 9 }} onClick={onRetry}>Try again</button>
+      )}
+    </Banner>
+  );
 }
 
 /**

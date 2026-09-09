@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api.ts';
-import { useApp } from '../lib/app.tsx';
+import { useApp, denialMessage } from '../lib/app.tsx';
 import { Card, Stat, Chip, Banner, Loading, Meter, Empty } from '../components/ui.tsx';
 import { ago, deadlineTone, elapsedLabel } from '../lib/format.ts';
 
@@ -22,8 +22,14 @@ export default function Dashboard() {
   const { user } = useApp();
   const [data, setData] = useState<Dash | null>(null);
 
-  useEffect(() => { api.get<Dash>('/security/dashboard').then(setData).catch(() => undefined); }, []);
-  if (!data) return <Loading what="Loading dashboard" />;
+  const [error, setError] = useState<string | null>(null);
+  const load = useCallback(() => {
+    setError(null);
+    api.get<Dash>('/security/dashboard').then(setData)
+      .catch((caught) => setError(denialMessage(caught)?.body || String(caught)));
+  }, []);
+  useEffect(load, [load]);
+  if (!data) return <Loading what="Loading dashboard" error={error} onRetry={load} />;
 
   return (
     <div className="stack">

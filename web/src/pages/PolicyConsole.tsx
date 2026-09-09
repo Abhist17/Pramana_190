@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../lib/api.ts';
+import { denialMessage } from '../lib/app.tsx';
 import { Card, Chip, Banner, Loading, Hash } from '../components/ui.tsx';
 import { when } from '../lib/format.ts';
 
@@ -30,14 +31,21 @@ const ACTIONS = [
 
 export default function PolicyConsole() {
   const [policy, setPolicy] = useState<PolicyResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [personas, setPersonas] = useState<Persona[]>([]);
   const [cases, setCases] = useState<CaseRow[]>([]);
   const [userIds, setUserIds] = useState<Record<string, string>>({});
   const [form, setForm] = useState({ username: '', caseId: '', action: 'document.read', purposeCode: 'INVESTIGATION', breakGlass: false });
   const [result, setResult] = useState<Simulation | null>(null);
 
+  const loadPolicy = useCallback(() => {
+    setError(null);
+    api.get<PolicyResponse>('/security/policy').then(setPolicy)
+      .catch((caught) => setError(denialMessage(caught)?.body || String(caught)));
+  }, []);
+
   useEffect(() => {
-    api.get<PolicyResponse>('/security/policy').then(setPolicy).catch(() => undefined);
+    loadPolicy();
     api.get<{ personas: Persona[] }>('/auth/personas').then((r) => {
       setPersonas(r.personas);
       setForm((current) => ({ ...current, username: r.personas[0]?.username ?? '' }));
@@ -46,7 +54,7 @@ export default function PolicyConsole() {
       setCases(r.cases);
       setForm((current) => ({ ...current, caseId: r.cases[0]?.id ?? '' }));
     }).catch(() => undefined);
-  }, []);
+  }, [loadPolicy]);
 
   // The simulator needs user ids, which /auth/personas deliberately does not expose;
   // resolve them by signing nothing - the server accepts a username lookup here.
@@ -57,7 +65,7 @@ export default function PolicyConsole() {
       .catch(() => undefined);
   }, [personas]);
 
-  if (!policy) return <Loading what="Loading access policy" />;
+  if (!policy) return <Loading what="Loading access policy" error={error} onRetry={loadPolicy} />;
 
   const simulate = () => {
     const userId = userIds[form.username];

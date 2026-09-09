@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../lib/api.ts';
+import { denialMessage } from '../lib/app.tsx';
 import { Card, Chip, Banner, Loading, Empty } from '../components/ui.tsx';
 import { when, shortHash } from '../lib/format.ts';
 
@@ -25,8 +26,14 @@ const CONTRACTS = [
 export default function Ledger() {
   const [status, setStatus] = useState<Status | null>(null);
 
-  useEffect(() => { api.get<Status>('/security/ledger/status').then(setStatus).catch(() => undefined); }, []);
-  if (!status) return <Loading what="Reading the ledger" />;
+  const [error, setError] = useState<string | null>(null);
+  const load = useCallback(() => {
+    setError(null);
+    api.get<Status>('/security/ledger/status').then(setStatus)
+      .catch((caught) => setError(denialMessage(caught)?.body || String(caught)));
+  }, []);
+  useEffect(load, [load]);
+  if (!status) return <Loading what="Reading the ledger" error={error} onRetry={load} />;
 
   return (
     <div className="stack">

@@ -6,6 +6,8 @@ import { Card, Chip, Banner, Loading, Empty, Meter, Modal } from '../components/
 import { when, deadlineTone } from '../lib/format.ts';
 
 type Overview = {
+  /** 'national' for DSP and above; 'assigned' for an officer's own sensitive cases. */
+  scope: 'national' | 'assigned';
   cases: { id: string; caseNumber: string; title: string; district: string; station: string;
            offenceCategory: string; sensitivity: number; victim: string | null; registeredAt: string }[];
   deadlines: { id: string; caseId: string; caseNumber?: string; kind: string; statuteRef: string;
@@ -20,14 +22,18 @@ type Overview = {
 export default function WomenSafety() {
   const { toast, user } = useApp();
   const [data, setData] = useState<Overview | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [requesting, setRequesting] = useState<{ caseId: string; caseNumber: string } | null>(null);
 
   const load = useCallback(() => {
-    api.get<Overview>('/wsd/overview').then(setData).catch(() => undefined);
+    setError(null);
+    api.get<Overview>('/wsd/overview')
+      .then(setData)
+      .catch((caught) => setError(denialMessage(caught)?.body || String(caught)));
   }, []);
   useEffect(load, [load]);
 
-  if (!data) return <Loading what="Loading Women Safety console" />;
+  if (!data) return <Loading what="Loading Women Safety console" error={error} onRetry={load} />;
 
   return (
     <div className="stack">
@@ -36,6 +42,17 @@ export default function WomenSafety() {
         <div className="muted small">
           Sexual offences, offences against children, trafficking and domestic violence - the most
           sensitive class of case file in Indian policing.
+        </div>
+        <div className="row" style={{ gap: 7, marginTop: 9 }}>
+          <Chip tone={data.scope === 'national' ? 'a' : 'n'}>
+            {data.scope === 'national' ? 'Division oversight - all districts' : 'Your assigned cases only'}
+          </Chip>
+          {data.scope === 'assigned' && (
+            <span className="tiny muted">
+              Rank does not widen this view; explicit case assignment does. Officers of DSP rank and
+              above see the national console.
+            </span>
+          )}
         </div>
       </div>
 
@@ -60,7 +77,11 @@ export default function WomenSafety() {
       </div>
 
       <Card title="Sensitive cases" sub="Escalated automatically on registration - no officer has to remember" tight>
-        {data.cases.length === 0 ? <Empty>No sensitive cases.</Empty> : (
+        {data.cases.length === 0 ? (
+          <Empty>{data.scope === 'assigned'
+            ? 'You are not assigned to any sensitive case. Assignment - not rank - is what opens these files.'
+            : 'No sensitive cases.'}</Empty>
+        ) : (
           <div className="table-wrap">
             <table>
               <thead><tr><th>Case</th><th>Category</th><th>Complainant</th><th>Station</th><th>Registered</th><th /></tr></thead>

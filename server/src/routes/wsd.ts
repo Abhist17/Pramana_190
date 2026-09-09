@@ -11,32 +11,57 @@ import {
 import { sealUnderThreshold, requestUnseal, approveUnseal, openSealed, sealStatus } from '../services/sealedCover.ts';
 import { deadlineBoard } from '../services/deadlines.ts';
 
+type SensitiveCaseRow = {
+  id: string; case_number: string; title: string; district: string; station: string;
+  offence_category: string; sensitivity: number; victim_pseudonym: string | null;
+  registered_at: string;
+};
+
 export default async function wsdRoutes(app: FastifyInstance) {
   app.addHook('preHandler', async (request, reply) => { authenticate(request, reply); });
 
   /**
-   * Women Safety Division oversight console.
+   * Women Safety Division console.
    *
-   * This aggregates every sensitive-mode case nationally plus every pending
-   * vault de-anonymisation request - the exact material the sensitive-case and
-   * vault rules elsewhere in this file exist to restrict. It is not scoped to a
-   * single case, so it cannot go through authorise() against one resource; it
-   * gets the same DSP-or-above oversight tier used for de-escalating a
-   * sensitive case and approving a vault reveal instead of being open to any
-   * authenticated officer.
+   * Two different things were being conflated here. The NATIONAL aggregate -
+   * every sensitive case in the country plus every pending vault request - is
+   * genuine oversight material and stays DSP-or-above. But an investigating
+   * officer assigned to a sensitive case has every right to see her own, and
+   * refusing her outright contradicted the policy engine, which permits exactly
+   * that on the individual case file (permit-assigned-officer).
+   *
+   * So rank buys the national view and assignment buys your own cases. An
+   * officer with neither gets an empty console rather than a refusal - which is
+   * the honest answer: there are no sensitive cases they may see.
    */
-  app.get('/overview', async (request, reply) => {
-    if (request.user!.rank_level < 5) {
-      audit({
-        actorId: request.user!.id, actorLabel: request.user!.full_name, action: 'wsd.overview',
-        outcome: 'deny', detail: { reason: 'requires DSP rank or above', rankLevel: request.user!.rank_level },
-      });
-      return reply.code(403).send(badRequest('the Women Safety Division oversight console requires DSP rank or above'));
-    }
-    const cases = all<{ id: string; case_number: string; title: string; district: string; station: string; offence_category: string; sensitivity: number; victim_pseudonym: string | null; registered_at: string }>(
-      `SELECT id, case_number, title, district, station, offence_category, sensitivity, victim_pseudonym, registered_at
-       FROM cases WHERE sensitive_mode = 1 ORDER BY registered_at DESC`,
-    );
+  app.get('/overview', async (request) => {
+    const oversight = request.user!.rank_level >= 5;
+    const assignedIds = Object.keys(request.subject!.assignments);
+    const scope = oversight ? 'national' : 'assigned';
+
+    const columns = `id, case_number, title, district, station, offence_category, sensitivity,
+                     victim_pseudonym, registered_at`;
+    const cases = oversight
+      ? all<SensitiveCaseRow>(
+          `SELECT ${columns} FROM cases WHERE sensitive_mode = 1 ORDER BY registered_at DESC`,
+        )
+      : assignedIds.length === 0
+        ? []
+        : all<SensitiveCaseRow>(
+            `SELECT ${columns} FROM cases
+             WHERE sensitive_mode = 1 AND id IN (${assignedIds.map(() => '?').join(', ')})
+             ORDER BY registered_at DESC`,
+            ...assignedIds,
+          );
+
+    // Reaching the division console is itself worth recording, and the scope it
+    // resolved to is the interesting part of the record.
+    audit({
+      actorId: request.user!.id, actorLabel: request.user!.full_name, action: 'wsd.overview',
+      outcome: 'allow',
+      detail: { scope, caseCount: cases.length, rankLevel: request.user!.rank_level },
+    });
+
     const board = deadlineBoard();
     const sensitiveIds = new Set(cases.map((c) => c.id));
     const sensitiveDeadlines = board.filter((d) => sensitiveIds.has(d.caseId));
@@ -57,6 +82,9 @@ export default async function wsdRoutes(app: FastifyInstance) {
     }
 
     return {
+      // Tells the console which view it is showing, so it can label a scoped
+      // view as scoped rather than implying the officer is seeing everything.
+      scope,
       cases: cases.map((row) => ({
         id: row.id, caseNumber: row.case_number, title: row.title, district: row.district,
         station: row.station, offenceCategory: row.offence_category, sensitivity: row.sensitivity,
@@ -65,7 +93,9 @@ export default async function wsdRoutes(app: FastifyInstance) {
       })),
       deadlines: sensitiveDeadlines,
       heatmap: [...heatmap.values()],
-      vaultRequests: pendingVaultRequests(),
+      vaultRequests: oversight
+        ? pendingVaultRequests()
+        : cases.flatMap((row) => pendingVaultRequests(row.id)),
       triggers: SENSITIVE_SECTIONS.map((s) => ({ pattern: String(s.pattern), category: s.category, label: s.label })),
       womanOfficerRequiredTypes: WOMAN_OFFICER_REQUIRED_TYPES,
     };
