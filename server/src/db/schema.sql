@@ -376,7 +376,8 @@ CREATE TABLE IF NOT EXISTS citizen_tokens (
   case_id      TEXT NOT NULL REFERENCES cases(id),
   phone        TEXT NOT NULL,
   otp          TEXT,
-  otp_expires  TEXT
+  otp_expires  TEXT,
+  otp_attempts INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS shares (

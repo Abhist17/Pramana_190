@@ -238,17 +238,19 @@ No `@fastify/rate-limit` anywhere. Consequences:
   each try expensive, which is a throttle by accident, not by design.
 - **`POST /citizen/request-otp`** - returns 404 for an unknown reference and 200
   for a known one, so FIR reference numbers can be enumerated.
-- **`POST /citizen/status`** - a six-digit OTP, valid ten minutes, unlimited
-  attempts. That is a million guesses against a complainant's case status, and it
-  is a script.
+- **`POST /citizen/status`** - ~~a six-digit OTP, valid ten minutes, unlimited
+  attempts~~. **Closed.** `citizen_tokens.otp_attempts` counts wrong guesses; the
+  fifth failure cancels the code and returns `429 otp_locked`, so the complainant
+  must request a new one and an attacker restarts from zero. The comparison is
+  `timingSafeEqual`, and a correct code is spent on use rather than left live for
+  its full ten minutes.
 
 The OTP is also stored in plaintext in `citizen_tokens.otp`, and
 `request-otp` returns `demoOtp` in the response body. Both are labelled as demo
 affordances, and both would be findings in a real audit.
 
-**Fix.** Rate limit globally; add an attempt counter that burns the OTP after five
-failures; return an identical response for known and unknown references; store the
-OTP hashed.
+**Still open.** Rate limit globally; return an identical response for known and
+unknown references; store the OTP hashed.
 
 ### C2 - S3. The verifier is a confirmation oracle
 

@@ -15,8 +15,21 @@ export function db(): DatabaseSync {
     mkdirSync(dirname(config.dbPath), { recursive: true });
     instance = new DatabaseSync(config.dbPath);
     instance.exec(readFileSync(resolve(here, 'schema.sql'), 'utf8'));
+    migrate(instance);
   }
   return instance;
+}
+
+/**
+ * Columns added after a database was first created. `CREATE TABLE IF NOT EXISTS`
+ * leaves an existing table untouched, so each addition needs an explicit,
+ * idempotent ALTER.
+ */
+function migrate(handle: DatabaseSync): void {
+  const columns = handle.prepare('PRAGMA table_info(citizen_tokens)').all() as { name: string }[];
+  if (!columns.some((c) => c.name === 'otp_attempts')) {
+    handle.exec('ALTER TABLE citizen_tokens ADD COLUMN otp_attempts INTEGER NOT NULL DEFAULT 0');
+  }
 }
 
 export function closeDb(): void {

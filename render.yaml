@@ -1,0 +1,27 @@
+# Render blueprint: one web service. The API process also serves the built
+# console (see server/src/index.ts), so the whole demo is a single deployment.
+services:
+  - type: web
+    name: pramana
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    # --include=dev is required: NODE_ENV=production makes npm skip devDependencies,
+    # and the build (vite) and runtime (tsx) both live there.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run seed --workspace server && npm run start --workspace server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      # Render routes external traffic to $PORT and requires binding on 0.0.0.0;
+      # the local default of 127.0.0.1 would make the service unreachable.
+      - key: HOST
+        value: 0.0.0.0
+      - key: NODE_ENV
+        value: production
+      # Generated once by Render and held in the service's environment, never
+      # in the repository. Rotating it invalidates every issued session token.
+      - key: PRAMANA_JWT_SECRET
+        generateValue: true

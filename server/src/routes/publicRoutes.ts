@@ -6,6 +6,17 @@ import { verifyProof, type InclusionProof } from '../core/merkle.ts';
 import { record as audit } from '../services/audit.ts';
 import { otp as makeOtp } from '../core/ids.ts';
 import { badRequest } from './helpers.ts';
+import { timingSafeEqual } from 'node:crypto';
+
+/** Wrong OTPs tolerated before the code is cancelled outright. */
+const OTP_MAX_ATTEMPTS = 5;
+
+function sameOtp(expected: string, supplied: string | undefined): boolean {
+  if (typeof supplied !== 'string') return false;
+  const a = Buffer.from(expected);
+  const b = Buffer.from(supplied);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
 
 /**
  * Unauthenticated surface. Everything here reveals whether something is TRUE
@@ -124,7 +135,7 @@ export default async function publicRoutes(app: FastifyInstance) {
 
     const code = makeOtp();
     run(
-      'UPDATE citizen_tokens SET otp = ?, otp_expires = ? WHERE reference_no = ?',
+      'UPDATE citizen_tokens SET otp = ?, otp_expires = ?, otp_attempts = 0 WHERE reference_no = ?',
       code, new Date(Date.now() + 10 * 60_000).toISOString(), referenceNo,
     );
     return {
@@ -137,15 +148,45 @@ export default async function publicRoutes(app: FastifyInstance) {
 
   app.post('/citizen/status', async (request, reply) => {
     const { referenceNo, otp } = (request.body ?? {}) as { referenceNo?: string; otp?: string };
-    const token = get<{ case_id: string; otp: string | null; otp_expires: string | null }>(
-      'SELECT case_id, otp, otp_expires FROM citizen_tokens WHERE reference_no = ?', referenceNo ?? '',
+    const token = get<{ case_id: string; otp: string | null; otp_expires: string | null; otp_attempts: number }>(
+      'SELECT case_id, otp, otp_expires, otp_attempts FROM citizen_tokens WHERE reference_no = ?', referenceNo ?? '',
     );
-    if (!token || !token.otp || token.otp !== otp) {
+    if (!token || !token.otp) {
       return reply.code(401).send({ error: 'invalid_otp', message: 'Reference number or OTP is incorrect.' });
     }
+
+    // A six-digit code on an unauthenticated endpoint is guessable in a few
+    // hundred thousand requests. Burn the code after a handful of wrong tries so
+    // the complainant has to ask for a new one and the attacker starts over.
+    if (token.otp_attempts >= OTP_MAX_ATTEMPTS) {
+      run("UPDATE citizen_tokens SET otp = NULL, otp_attempts = 0 WHERE reference_no = ?", referenceNo ?? '');
+      audit({
+        actorId: null, actorLabel: `citizen:${referenceNo}`, action: 'citizen.otp_locked',
+        outcome: 'deny', resourceType: 'case', resourceId: token.case_id, caseId: token.case_id,
+        reason: 'OTP retry limit exhausted', ip: request.ip,
+      });
+      return reply.code(429).send({
+        error: 'otp_locked',
+        message: 'Too many incorrect attempts. That code has been cancelled - request a new one.',
+      });
+    }
+
     if (token.otp_expires && new Date(token.otp_expires) < new Date()) {
       return reply.code(401).send({ error: 'otp_expired', message: 'That OTP has expired. Request a new one.' });
     }
+
+    if (!sameOtp(token.otp, otp)) {
+      run('UPDATE citizen_tokens SET otp_attempts = otp_attempts + 1 WHERE reference_no = ?', referenceNo ?? '');
+      audit({
+        actorId: null, actorLabel: `citizen:${referenceNo}`, action: 'citizen.otp_failed',
+        outcome: 'deny', resourceType: 'case', resourceId: token.case_id, caseId: token.case_id,
+        reason: 'incorrect OTP', ip: request.ip,
+      });
+      return reply.code(401).send({ error: 'invalid_otp', message: 'Reference number or OTP is incorrect.' });
+    }
+
+    // Correct: spend the code so it cannot be replayed.
+    run('UPDATE citizen_tokens SET otp = NULL, otp_attempts = 0 WHERE reference_no = ?', referenceNo ?? '');
 
     const caseRow = get<{ id: string; case_number: string; status: string; registered_at: string; station: string; district: string; victim_pseudonym: string | null }>(
       'SELECT id, case_number, status, registered_at, station, district, victim_pseudonym FROM cases WHERE id = ?',
